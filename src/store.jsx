@@ -19,8 +19,8 @@ export function StoreProvider({ children }) {
     { id: 7, text: 'Batterie : contrôle avant départ', done: false },
     { id: 8, text: 'Appli péage Tre Cime / monnaie', done: false },
   ])
-  // v2 : départ Montarnaud le 17/09, retour le 02/10 au soir (clé changée pour rafraîchir les plannings déjà en cache)
-  const [plan, setPlan] = useStored('plan-v2', DEFAULT_PLAN)
+  // v3 : étapes routières de 3-4 h max avec balade chien (clé changée pour rafraîchir les plannings déjà en cache)
+  const [plan, setPlan] = useStored('plan-v3', DEFAULT_PLAN)
 
   const toggleFav = (id) => setFavs((f) => (f.includes(id) ? f.filter((x) => x !== id) : [...f, id]))
   const toggleDone = (id) => setDone((f) => (f.includes(id) ? f.filter((x) => x !== id) : [...f, id]))
