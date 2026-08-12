@@ -10,7 +10,7 @@ Compagnon de voyage interactif pour notre road-trip dans les Dolomites du **17 s
 - **Risque patous** : indicateur 5 niveaux avec justification par terrain
 - **🚐 Compatibilité camping-car** : hauteur, longueur, nuit sur place, vidange, eau, élec
 - **7 camps de base** : dormir, courses, eau, vidange, restaurants, balades chien
-- **Planning 15 jours** réorganisable (drag & drop), avec météo par jour
+- **Planning 16 jours** (Montarnaud → Dolomites → Montarnaud) réorganisable (drag & drop), avec météo par jour
 - **Météo Open-Meteo** 7 jours par secteur + suggestions automatiques de randos selon le temps
 - **Top 20 couchers / levers de soleil**, 7 classements thématiques
 - **Carnet** : favoris, notes, checklist, randos réalisées, export JSON / PDF

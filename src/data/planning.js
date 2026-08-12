@@ -1,8 +1,9 @@
-// Planning par défaut du 17 septembre au 2 octobre 2026 (réorganisable dans l'app).
+// Planning du jeudi 17 septembre (départ de Montarnaud) au vendredi 2 octobre 2026
+// (retour à Montarnaud le soir). Réorganisable dans l'app.
 // Chaque jour : date ISO, base, lieux prévus (ids), plan B météo, note logistique.
 export const DEFAULT_PLAN = [
-  { date: '2026-09-17', title: 'Arrivée & mise en jambes', base: 'fassa', spots: ['lago-di-carezza', 'latemar'], planB: 'Repos + courses à Canazei', note: 'Route depuis la France. Nuit : aire de Canazei ou Obereggen. Petite balade de dérouillage possible au Lago di Carezza (déjà connu, 30 min).' },
-  { date: '2026-09-18', title: 'Latemar sauvage', base: 'fassa', spots: ['latemar'], planB: 'vallunga', note: 'Labyrinthe + Torre di Pisa si grand beau, sinon boucle courte du labyrinthe. Nuit à Obereggen ou Canazei.' },
+  { date: '2026-09-17', title: 'Départ de Montarnaud', base: 'fassa', spots: [], planB: null, note: 'Départ à l’aube de Montarnaud : ~1 050 km / 10-11 h de route via Chambéry, le tunnel du Fréjus, Turin, Milan et Vérone. Pauses chien toutes les 2-3 h. Arrivée en soirée : nuit à l’aire de Canazei ou au parking d’Obereggen.' },
+  { date: '2026-09-18', title: 'Latemar sauvage', base: 'fassa', spots: ['latemar'], planB: 'vallunga', note: 'Mise en jambes après la route : labyrinthe du Latemar, + Torre di Pisa si grand beau et bonnes jambes. Le Lago di Carezza (déjà connu) est à 10 min pour un café au bord de l’eau. Nuit à Obereggen ou Canazei.' },
   { date: '2026-09-19', title: 'La terrasse des Dolomites', base: 'fassa', spots: ['passo-sella', 'lago-fedaia'], planB: 'lago-fedaia', note: 'Sass Pordoi tôt, plateau du Sella, Piz Boè si le chien est en forme. Fin de journée : Lago Fedaia, nuit possible au barrage.' },
   { date: '2026-09-20', title: 'Val Venegia pastorale', base: 'fassa', spots: ['val-venegia'], planB: 'passo-sella', note: 'Se renseigner aux malgas sur les troupeaux avant de monter. Baita Segantini au soleil du soir. Nuit Passo Rolle ou retour Canazei.' },
   { date: '2026-09-21', title: 'Entrée en Gardena', base: 'val-gardena', spots: ['vallunga'], planB: 'vallunga', note: 'Liaison vers Selva. Vallunga en après-midi tranquille (jour de “récupération”). Nuit : aire de Selva ou Pontives.' },
@@ -14,9 +15,9 @@ export const DEFAULT_PLAN = [
   { date: '2026-09-27', title: 'Cap sur l’Alta Badia', base: 'alta-badia', spots: ['armentara', 'santa-croce'], planB: 'armentara', note: 'Liaison par le Passo Gardena. Armentara le matin, montée à La Crusc pour l’embrasement du soir. Nuit : aire de Corvara.' },
   { date: '2026-09-28', title: 'Lagazuoi & la Grande Guerre', base: 'alta-badia', spots: ['lagazuoi', 'cinque-torri'], planB: 'santa-croce', note: 'Falzarego : Lagazuoi le matin (téléphérique), Cinque Torri l’après-midi, coucher de soleil à l’Averau. Journée dense mais modulable.' },
   { date: '2026-09-29', title: 'Federa, l’or des mélèzes', base: 'cortina', spots: ['lago-federa'], planB: 'cinque-torri', note: 'Montée depuis Ru Curto. Pique-nique au bord du lac sous la Croda da Lago. Nuit : camping à Cortina.' },
-  { date: '2026-09-30', title: 'Vers le grand nord', base: 'misurina', spots: ['monte-piana', 'lago-misurina'], planB: 'prato-piazza', note: 'Liaison Cortina → Misurina. Monte Piana l’après-midi (navette possible). Nuit : aire de Misurina, réveil sur le lac.' },
-  { date: '2026-10-01', title: 'Tre Cime, le final', base: 'misurina', spots: ['tre-cime', 'cadini'], planB: 'prato-piazza', note: 'LE final : montée tôt à Auronzo, tour des Tre Cime, puis belvédère des Cadini au couchant. Nuit au parking Auronzo si autorisé.' },
-  { date: '2026-10-02', title: 'Prato Piazza & route du retour', base: 'misurina', spots: ['prato-piazza'], planB: 'dobbiaco', note: 'Adieu aux Dolomites depuis le Monte Specie face aux Tre Cime, puis route. Vidange/pleins à Dobbiaco avant de partir.' },
+  { date: '2026-09-30', title: 'Vers le grand nord', base: 'misurina', spots: ['monte-piana', 'prato-piazza'], planB: 'lago-misurina', note: 'Liaison Cortina → Misurina. Monte Piana en journée (navette possible), puis coucher de soleil au Monte Specie (Prato Piazza) face aux Tre Cime si l’énergie suit — sinon tour du lac de Misurina. Nuit : aire de Misurina.' },
+  { date: '2026-10-01', title: 'Tre Cime, le final', base: 'misurina', spots: ['tre-cime', 'cadini'], planB: 'prato-piazza', note: 'LE final : montée tôt à Auronzo, tour des Tre Cime, belvédère des Cadini en début d’après-midi. Puis on redescend et on avale 2h de route vers Bolzano/Trento pour raccourcir le retour. Nuit en aire sur la route (Bolzano ou Trento).' },
+  { date: '2026-10-02', title: 'Retour à Montarnaud', base: '', spots: [], planB: null, note: 'Grande journée de route : ~900 km / 9-10 h depuis Bolzano via Vérone, Milan, Turin et le Fréjus. Départ avant 8h, pauses chien régulières, arrivée à Montarnaud dans la soirée. Vidange/pleins faits la veille.' },
 ]
 
 export const TRIP_START = '2026-09-17'

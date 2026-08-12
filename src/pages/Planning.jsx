@@ -33,7 +33,7 @@ export default function Planning() {
     <div className="page fade-in">
       <div className="eyebrow">17 septembre → 2 octobre 2026</div>
       <div className="section-head" style={{ marginBottom: 6 }}>
-        <h2>Planning des 15 jours</h2>
+        <h2>Planning — Montarnaud → Dolomites → Montarnaud</h2>
         <button className="rank-tab" onClick={() => { if (confirm('Restaurer le planning d’origine ?')) setPlan(DEFAULT_PLAN) }}>↺ Réinitialiser</button>
       </div>
       <p style={{ color: 'var(--text-2)', fontSize: 14, marginBottom: 16, maxWidth: 640 }}>
@@ -62,9 +62,11 @@ export default function Planning() {
               </div>
               <div className="day-body">
                 <h3>{day.title}</h3>
-                <div style={{ fontSize: 12.5, color: 'var(--accent)', fontWeight: 700, marginTop: 2 }}>
-                  Base : {basesById[day.base]?.name || day.base}
-                </div>
+                {basesById[day.base] && (
+                  <div style={{ fontSize: 12.5, color: 'var(--accent)', fontWeight: 700, marginTop: 2 }}>
+                    Base : {basesById[day.base].name}
+                  </div>
+                )}
                 <div className="day-spots">
                   {day.spots.map((id) => byId[id] && (
                     <a key={id} className="day-spot" href={`#/lieu/${id}`}>
