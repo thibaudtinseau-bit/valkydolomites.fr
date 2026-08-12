@@ -101,11 +101,46 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .tabbar a.active .t-ico { transform: translateY(-2px) scale(1.12); }
 
 @media (min-width: 900px) {
-  .topbar nav { display: flex; }
-  .tabbar { display: none; }
+  .topbar nav { display: flex; overflow-x: auto; scrollbar-width: none; max-width: calc(100vw - 300px); }
+  .topbar nav::-webkit-scrollbar { display: none; }
+  .topbar nav a { white-space: nowrap; flex-shrink: 0; }
+  .tabbar, .sheet, .sheet-backdrop { display: none; }
   :root { --tab-h: 0px; }
   .page { padding-bottom: 60px; }
 }
+
+/* ─── Menu « Plus » (mobile / tablette) ─── */
+.sheet-backdrop {
+  position: fixed; inset: 0; z-index: 1900;
+  background: rgba(5, 9, 18, 0.55);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.2s;
+}
+.sheet {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 1950;
+  background: var(--glass);
+  backdrop-filter: blur(24px) saturate(1.5);
+  -webkit-backdrop-filter: blur(24px) saturate(1.5);
+  border: 1px solid var(--stroke); border-bottom: none;
+  border-radius: 26px 26px 0 0;
+  padding: 10px 16px calc(var(--tab-h) + 14px);
+  animation: sheetUp 0.3s cubic-bezier(.22,.68,0,1);
+  max-height: 75dvh; overflow-y: auto;
+}
+@keyframes sheetUp { from { transform: translateY(60%); opacity: 0.4; } }
+.sheet-grab { width: 40px; height: 4px; border-radius: 4px; background: var(--stroke); margin: 2px auto 12px; }
+.sheet-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+@media (min-width: 560px) { .sheet-grid { grid-template-columns: repeat(4, 1fr); } }
+.sheet-tile {
+  display: flex; flex-direction: column; align-items: center; gap: 7px;
+  padding: 15px 6px 13px; border-radius: var(--r-md);
+  background: var(--card); border: 1px solid var(--stroke);
+  font-size: 12px; font-weight: 700; color: var(--text-2); text-align: center;
+  transition: 0.2s;
+}
+.sheet-tile:active { transform: scale(0.96); }
+.sheet-tile.active { color: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
+.sheet-tile .st-ico { font-size: 24px; line-height: 1; }
 
 /* ─── Hero ─── */
 .hero { position: relative; height: 100dvh; min-height: 560px; display: grid; place-items: center; overflow: hidden; }

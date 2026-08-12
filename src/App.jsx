@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useRoute } from './hooks'
 import { StoreProvider, useStore } from './store'
 import Home from './pages/Home'
@@ -19,18 +19,30 @@ const NAV = [
   ['carte', 'Carte', '🗺️'],
   ['lieux', 'Lieux', '🥾'],
   ['planning', 'Planning', '📅'],
-  ['favoris', 'Carnet', '♥'],
 ]
-const NAV_DESKTOP = [
-  ['', 'Accueil'], ['carte', 'Carte'], ['lieux', 'Randonnées'], ['planning', 'Planning'],
-  ['itineraire', 'Itinéraire'], ['meteo', 'Météo'], ['soleil', 'Golden hour'], ['classements', 'Classements'],
-  ['bases', 'Bases'], ['camping-car', 'Camping-car'], ['favoris', 'Carnet'],
+const ALL_PAGES = [
+  ['', 'Accueil', '🏔️'],
+  ['carte', 'Carte', '🗺️'],
+  ['lieux', 'Randonnées', '🥾'],
+  ['planning', 'Planning', '📅'],
+  ['itineraire', 'Itinéraire', '🚗'],
+  ['meteo', 'Météo', '🌤️'],
+  ['soleil', 'Golden hour', '🌇'],
+  ['classements', 'Classements', '🏆'],
+  ['bases', 'Bases', '⛺'],
+  ['camping-car', 'Camping-car', '🚐'],
+  ['favoris', 'Carnet & favoris', '♥'],
 ]
+const NAV_DESKTOP = ALL_PAGES.map(([p, label]) => [p, label])
 
 function Shell() {
   const route = useRoute()
   const { theme, setTheme } = useStore()
   const [page, param] = route
+  const [menuOpen, setMenuOpen] = useState(false)
+
+  useEffect(() => { setMenuOpen(false) }, [page, param])
+  useEffect(() => { document.body.style.overflow = menuOpen ? 'hidden' : '' }, [menuOpen])
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
@@ -86,7 +98,32 @@ function Shell() {
             {label}
           </a>
         ))}
+        <a
+          href="#menu"
+          className={menuOpen ? 'active' : ''}
+          onClick={(e) => { e.preventDefault(); setMenuOpen((o) => !o) }}
+        >
+          <span className="t-ico">☰</span>
+          Plus
+        </a>
       </nav>
+
+      {menuOpen && (
+        <>
+          <div className="sheet-backdrop" onClick={() => setMenuOpen(false)} />
+          <div className="sheet" role="dialog" aria-label="Toutes les pages">
+            <div className="sheet-grab" />
+            <div className="sheet-grid">
+              {ALL_PAGES.map(([p, label, ico]) => (
+                <a key={p} href={`#/${p}`} className={`sheet-tile ${isActive(p) ? 'active' : ''}`} onClick={() => setMenuOpen(false)}>
+                  <span className="st-ico">{ico}</span>
+                  <span>{label}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </>
+      )}
     </div>
   )
 }
