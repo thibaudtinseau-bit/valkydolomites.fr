@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "gen:context": "esbuild scripts/context-entry.mjs --bundle --format=esm --platform=node --outfile=/tmp/ctx-bundle.mjs && node /tmp/ctx-bundle.mjs > api/_context.js"
   },
   "dependencies": {
     "leaflet": "^1.9.4",

@@ -19,6 +19,7 @@ import Docs from './pages/Docs'
 import NightSpots from './pages/NightSpots'
 import Favorites from './pages/Favorites'
 import MapView from './components/MapView'
+import Copilot from './components/Copilot'
 
 const NAV = [
   ['jour', 'Aujourd’hui', '☀️'],
@@ -162,6 +163,8 @@ function Shell() {
       </header>
 
       {view}
+
+      <Copilot />
 
       <nav className="tabbar">
         {NAV.map(([p, label, ico]) => (

@@ -398,6 +398,67 @@ textarea.notes:focus { outline: none; border-color: var(--accent); }
 .base-section li { font-size: 13.5px; color: var(--text-2); padding-left: 16px; position: relative; line-height: 1.5; }
 .base-section li::before { content: '·'; position: absolute; left: 4px; color: var(--accent); font-weight: 900; }
 
+/* ─── Copilote IA ─── */
+.copilot-fab {
+  position: fixed; right: 16px; bottom: calc(var(--tab-h) + 16px); z-index: 1500;
+  width: 54px; height: 54px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold), #b8924b);
+  font-size: 25px; display: grid; place-items: center;
+  box-shadow: 0 10px 30px -6px rgba(212, 175, 106, 0.6);
+  transition: 0.25s;
+}
+.copilot-fab:hover { transform: translateY(-2px) scale(1.05); }
+.copilot-fab.hide { opacity: 0; pointer-events: none; transform: scale(0.5); }
+.copilot-panel {
+  position: fixed; right: 12px; bottom: calc(var(--tab-h) + 12px); z-index: 2500;
+  width: min(400px, calc(100vw - 24px)); height: min(600px, calc(100dvh - var(--nav-h) - var(--tab-h) - 30px));
+  display: flex; flex-direction: column;
+  background: var(--glass);
+  backdrop-filter: blur(26px) saturate(1.5); -webkit-backdrop-filter: blur(26px) saturate(1.5);
+  border: 1px solid var(--stroke); border-radius: 22px;
+  box-shadow: var(--shadow);
+  animation: rise 0.28s cubic-bezier(.22,.68,0,1) both;
+  overflow: hidden;
+}
+.cp-head { display: flex; justify-content: space-between; align-items: center; padding: 13px 16px; border-bottom: 1px solid var(--stroke); flex-shrink: 0; }
+.cp-msgs { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+.cp-welcome p { font-size: 13.5px; color: var(--text-2); line-height: 1.55; margin-bottom: 12px; }
+.cp-suggests { display: flex; flex-direction: column; gap: 7px; }
+.cp-suggests button {
+  text-align: left; font-size: 13px; font-weight: 600; padding: 10px 13px;
+  border-radius: 13px; background: var(--card); border: 1px solid var(--stroke);
+  color: var(--text-2); transition: 0.2s;
+}
+.cp-suggests button:hover { border-color: var(--accent); color: var(--accent); }
+.cp-msg { display: flex; flex-direction: column; max-width: 88%; }
+.cp-msg.user { align-self: flex-end; align-items: flex-end; }
+.cp-msg.model { align-self: flex-start; }
+.cp-bubble {
+  padding: 10px 14px; border-radius: 16px; font-size: 13.5px; line-height: 1.55;
+  background: var(--card); border: 1px solid var(--stroke); word-break: break-word;
+}
+.cp-msg.user .cp-bubble { background: linear-gradient(135deg, var(--gold), #b8924b); color: #171207; border: none; font-weight: 600; }
+.cp-bubble a { color: var(--accent); font-weight: 700; text-decoration: underline; }
+.cp-msg.user .cp-bubble a { color: #171207; }
+.cp-model { font-size: 10px; color: var(--text-3); margin: 3px 6px 0; font-weight: 600; }
+.cp-typing { display: flex; gap: 4px; padding: 14px; }
+.cp-typing span { width: 7px; height: 7px; border-radius: 50%; background: var(--text-3); animation: cpBounce 1.2s infinite; }
+.cp-typing span:nth-child(2) { animation-delay: 0.15s; }
+.cp-typing span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes cpBounce { 30% { transform: translateY(-5px); opacity: 1; } 60% { opacity: 0.4; } }
+.cp-input { display: flex; gap: 8px; padding: 11px 13px calc(11px + env(safe-area-inset-bottom, 0px)); border-top: 1px solid var(--stroke); flex-shrink: 0; }
+.cp-input input {
+  flex: 1; background: var(--card); border: 1px solid var(--stroke); border-radius: 999px;
+  padding: 11px 16px; color: var(--text); font: inherit; font-size: 14px;
+}
+.cp-input input:focus { outline: none; border-color: var(--accent); }
+.cp-send {
+  width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--gold), #b8924b); color: #171207;
+  font-size: 15px; display: grid; place-items: center; transition: 0.2s;
+}
+.cp-send:disabled { opacity: 0.4; }
+
 /* ─── Misc ─── */
 .filters { display: flex; gap: 8px; overflow-x: auto; padding: 2px 0 10px; scrollbar-width: none; }
 .filters::-webkit-scrollbar { display: none; }
