@@ -19,9 +19,47 @@ const TRAIT_LABELS = {
   demiTour: ['↩️', 'Demi-tour possible'],
 }
 
+const MY_CRITERIA = [
+  ['paysage', '😍 Paysage'],
+  ['interet', '🥾 Intérêt de la rando'],
+  ['acces', '🚐 Accès camping-car'],
+  ['chien', '🐶 Avec le chien'],
+  ['photo', '📷 Photogénique'],
+  ['coucher', '🌇 Coucher de soleil'],
+  ['lever', '🌅 Lever de soleil'],
+  ['famille', '👨‍👩‍👧 Famille'],
+  ['difficulte', '💪 Difficulté ressentie'],
+  ['retour', '😎 J’y retournerais'],
+]
+
+function MyRating({ locId }) {
+  const { myRatings, setMyRating } = useStore()
+  const r = myRatings[locId] || {}
+  const rated = MY_CRITERIA.filter(([k]) => r[k]).length
+  return (
+    <div className="card pad">
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 8 }}>
+        <h3 style={{ fontWeight: 850 }}>⭐ Notre note</h3>
+        {rated > 0 && <span className="tag">{(MY_CRITERIA.reduce((s, [k]) => s + (r[k] || 0), 0) / rated).toFixed(1)}/5</span>}
+      </div>
+      <p style={{ fontSize: 12.5, color: 'var(--text-3)', margin: '4px 0 8px' }}>Pas une note Google — la nôtre, après y être allés.</p>
+      {MY_CRITERIA.map(([k, label]) => (
+        <div key={k} className="myrate-row">
+          <span className="mr-label">{label}</span>
+          <span className="myrate-stars">
+            {[1, 2, 3, 4, 5].map((n) => (
+              <button key={n} className={(r[k] || 0) >= n ? 'on' : ''} onClick={() => setMyRating(locId, k, r[k] === n ? 0 : n)} aria-label={`${n}/5`}>★</button>
+            ))}
+          </span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
 export default function PlaceDetail({ id }) {
   const loc = byId[id]
-  const { favs, toggleFav, done, toggleDone, notes, setNote } = useStore()
+  const { favs, toggleFav, done, toggleDone, notes, setNote, doneDetails, setDoneDetail } = useStore()
   if (!loc) return <div className="page"><div className="empty">Lieu introuvable. <a href="#/lieux" style={{ color: 'var(--accent)' }}>Retour aux lieux</a></div></div>
   const photos = getPhotos(loc.id)
   const base = basesById[loc.area]
@@ -155,6 +193,28 @@ export default function PlaceDetail({ id }) {
                 <p style={{ fontSize: 13.5, color: 'var(--text-2)', marginTop: 6, lineHeight: 1.55 }}>{base.intro}</p>
               </a>
             )}
+
+            {isDone && (
+              <div className="card pad" style={{ borderColor: 'var(--green)' }}>
+                <h3 style={{ fontWeight: 850, color: 'var(--green)', marginBottom: 10 }}>✓ On l’a faite !</h3>
+                <div style={{ display: 'grid', gap: 8 }}>
+                  <label style={{ fontSize: 12.5, fontWeight: 700, color: 'var(--text-3)' }}>Date
+                    <input type="date" value={doneDetails[loc.id]?.date || ''} onChange={(e) => setDoneDetail(loc.id, { date: e.target.value })}
+                      style={{ display: 'block', width: '100%', marginTop: 4, background: 'var(--card)', border: '1px solid var(--stroke)', borderRadius: 10, padding: '9px 12px', color: 'var(--text)', font: 'inherit', fontSize: 14 }} />
+                  </label>
+                  <label style={{ fontSize: 12.5, fontWeight: 700, color: 'var(--text-3)' }}>Temps réel
+                    <input placeholder="ex : 4h10 avec pauses" value={doneDetails[loc.id]?.realTime || ''} onChange={(e) => setDoneDetail(loc.id, { realTime: e.target.value })}
+                      style={{ display: 'block', width: '100%', marginTop: 4, background: 'var(--card)', border: '1px solid var(--stroke)', borderRadius: 10, padding: '9px 12px', color: 'var(--text)', font: 'inherit', fontSize: 14 }} />
+                  </label>
+                  <label style={{ fontSize: 12.5, fontWeight: 700, color: 'var(--text-3)' }}>Notre commentaire
+                    <textarea className="notes" style={{ marginTop: 4, minHeight: 64 }} placeholder="Le meilleur moment, ce qu’on referait autrement…"
+                      value={doneDetails[loc.id]?.comment || ''} onChange={(e) => setDoneDetail(loc.id, { comment: e.target.value })} />
+                  </label>
+                </div>
+              </div>
+            )}
+
+            <MyRating locId={loc.id} />
 
             <div className="card pad">
               <h3 style={{ fontWeight: 850, marginBottom: 10 }}>📝 Nos notes</h3>

@@ -263,6 +263,46 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .map-popup h4 { margin: 8px 0 2px; font-size: 15px; }
 .map-popup .mp-open { display: inline-block; margin-top: 8px; color: var(--accent); font-weight: 700; font-size: 13px; }
 
+/* ─── Carte : filtres & POI ─── */
+.map-filters {
+  position: absolute; z-index: 1000; top: 10px; left: 10px; right: 10px;
+  display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px;
+  scrollbar-width: none; -webkit-overflow-scrolling: touch;
+}
+.map-filters::-webkit-scrollbar { display: none; }
+.map-chip {
+  flex-shrink: 0; padding: 7px 12px; border-radius: 999px;
+  background: var(--glass); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--stroke); font-size: 12.5px; font-weight: 700; color: var(--text-3);
+  transition: 0.2s;
+}
+.map-chip.on { color: var(--text); border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); }
+.poi-dot {
+  width: 24px; height: 24px; border-radius: 50%;
+  display: grid; place-items: center; font-size: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,.4), inset 0 0 0 2px rgba(255,255,255,.55);
+}
+
+/* ─── Timeline planning ─── */
+.timeline-strip { display: flex; gap: 6px; overflow-x: auto; padding: 4px 0 10px; scrollbar-width: none; }
+.timeline-strip::-webkit-scrollbar { display: none; }
+.tl-day {
+  flex-shrink: 0; width: 64px; text-align: center; padding: 9px 4px;
+  border-radius: var(--r-sm); background: var(--card); border: 1px solid var(--stroke);
+  font-size: 10.5px; font-weight: 700; color: var(--text-3); transition: .2s;
+}
+.tl-day b { display: block; font-size: 13px; color: var(--text); }
+.tl-day .tl-ico { display: block; font-size: 16px; margin: 2px 0; }
+.tl-day.now { border-color: var(--accent); box-shadow: inset 0 0 0 1px var(--accent); color: var(--accent); }
+.tl-day.now b { color: var(--accent); }
+
+/* ─── Notation personnelle ─── */
+.myrate-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 7px 0; border-bottom: 1px dashed var(--stroke); }
+.myrate-row:last-child { border-bottom: none; }
+.myrate-row .mr-label { font-size: 13.5px; font-weight: 600; }
+.myrate-stars button { font-size: 18px; opacity: 0.28; transition: .15s; padding: 0 2px; }
+.myrate-stars button.on { opacity: 1; }
+
 /* ─── Itinéraire ─── */
 .route-dot {
   width: 28px; height: 28px; border-radius: 50%;

@@ -1,8 +1,42 @@
 import React, { useState } from 'react'
 import { BASES } from '../data/bases'
 import { NEW_LOCATIONS, getPhotos } from '../data/locations'
-import { useWeather, wmo, dayScore } from '../hooks'
+import { useWeather, useHourlyWeather, wmo, dayScore, stormRisk } from '../hooks'
 import { Stars } from '../components/ui'
+
+// Zoom détaillé sur 4 horizons : aujourd'hui, demain, +3 j, +7 j
+function DayZoom({ hwx }) {
+  if (!hwx?.daily) return null
+  const targets = [[0, 'Aujourd’hui'], [1, 'Demain'], [3, 'Dans 3 jours'], [7, 'Dans 7 jours']]
+  return (
+    <div className="grid cols-2" style={{ marginTop: 14 }}>
+      {targets.map(([i, label]) => {
+        if (!hwx.daily.time[i]) return null
+        const [ico, desc] = wmo(hwx.daily.weather_code[i])
+        const storm = stormRisk(hwx.hourly, i)
+        const midday = i * 24 + 13
+        const iso0 = hwx.hourly?.freezing_level_height?.[midday]
+        const visi = hwx.hourly?.visibility?.[midday]
+        const score = dayScore(hwx.daily, i)
+        return (
+          <div key={i} className="card pad">
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 8 }}>
+              <h3 style={{ fontWeight: 850, fontSize: 15.5 }}>{label} <span style={{ color: 'var(--text-3)', fontWeight: 600, fontSize: 12.5 }}>· {new Date(hwx.daily.time[i] + 'T12:00').toLocaleDateString('fr-FR', { weekday: 'long', day: 'numeric' })}</span></h3>
+              <span className="tag" style={{ color: score >= 70 ? 'var(--green)' : score >= 45 ? '#eab308' : 'var(--red)' }}>{score}/100</span>
+            </div>
+            <div style={{ fontSize: 15, margin: '8px 0 4px' }}>{ico} <b>{desc}</b> · {Math.round(hwx.daily.temperature_2m_max[i])}° / {Math.round(hwx.daily.temperature_2m_min[i])}°</div>
+            <div className="kv"><span className="k">💨 Vent / rafales</span><span className="v">{Math.round(hwx.daily.wind_speed_10m_max[i])} / {Math.round(hwx.daily.wind_gusts_10m_max?.[i] || 0)} km/h</span></div>
+            <div className="kv"><span className="k">🌧 Pluie</span><span className="v">{hwx.daily.precipitation_sum[i]?.toFixed(1)} mm · {hwx.daily.precipitation_probability_max?.[i] ?? 0}%</span></div>
+            {hwx.daily.snowfall_sum[i] > 0 && <div className="kv"><span className="k">❄️ Neige</span><span className="v" style={{ color: 'var(--red)' }}>{hwx.daily.snowfall_sum[i].toFixed(0)} cm</span></div>}
+            {storm && <div className="kv"><span className="k">🌩️ Orage</span><span className="v" style={{ color: storm.color }}>{storm.emoji} {storm.label}</span></div>}
+            {iso0 != null && <div className="kv"><span className="k">❄️ Iso 0°</span><span className="v">≈ {Math.round(iso0 / 100) * 100} m</span></div>}
+            {visi != null && <div className="kv"><span className="k">👁 Visibilité</span><span className="v">{visi >= 20000 ? 'Excellente' : visi >= 10000 ? 'Bonne' : visi >= 4000 ? 'Moyenne' : 'Faible'} ({Math.round(visi / 1000)} km)</span></div>}
+          </div>
+        )
+      })}
+    </div>
+  )
+}
 
 // Suggestion : score météo du jour × profil du lieu.
 // Beau temps sec → sommets/crêtes ; moyen → mi-hauteur ; pluie → vallées & forêts.
@@ -34,6 +68,7 @@ export default function Weather() {
   const [baseIdx, setBaseIdx] = useState(0)
   const base = BASES[baseIdx]
   const { data: wx, error } = useWeather(base.coords[0], base.coords[1])
+  const hwx = useHourlyWeather(base.coords[0], base.coords[1])
 
   return (
     <div className="page fade-in">
@@ -65,6 +100,8 @@ export default function Weather() {
               )
             })}
           </div>
+
+          <DayZoom hwx={hwx} />
 
           <div className="section">
             <div className="section-head"><h2>Le site te suggère</h2></div>

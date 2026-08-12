@@ -78,6 +78,53 @@ export const WMO = {
 }
 export const wmo = (code) => WMO[code] || ['🌡️', '—']
 
+// ─── Prévisions horaires (page Aujourd'hui + météo détaillée) ───
+const hCache = {}
+export function useHourlyWeather(lat, lon) {
+  const key = `${lat.toFixed(2)},${lon.toFixed(2)}`
+  const [data, setData] = useState(() => hCache[key]?.data || null)
+  useEffect(() => {
+    let dead = false
+    const cached = hCache[key]
+    if (cached && Date.now() - cached.at < 30 * 60 * 1000) { setData(cached.data); return }
+    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}` +
+      `&hourly=temperature_2m,precipitation_probability,precipitation,weather_code,wind_speed_10m,wind_gusts_10m,cape,freezing_level_height,visibility,cloud_cover` +
+      `&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max,wind_speed_10m_max,wind_gusts_10m_max,snowfall_sum,sunrise,sunset` +
+      `&timezone=Europe%2FRome&forecast_days=8`
+    fetch(url)
+      .then((r) => r.json())
+      .then((j) => {
+        if (dead) return
+        hCache[key] = { data: j, at: Date.now() }
+        try { localStorage.setItem('dolo26:hwx:' + key, JSON.stringify(hCache[key])) } catch {}
+        setData(j)
+      })
+      .catch(() => {
+        try {
+          const raw = localStorage.getItem('dolo26:hwx:' + key)
+          if (raw && !dead) setData(JSON.parse(raw).data)
+        } catch {}
+      })
+    return () => { dead = true }
+  }, [key])
+  return data
+}
+
+// Risque d'orage à partir du CAPE (J/kg) + codes météo.
+export function stormRisk(hourly, dayIdx = 0) {
+  if (!hourly?.cape) return null
+  const from = dayIdx * 24, to = from + 24
+  const capes = hourly.cape.slice(from, to).filter((x) => x != null)
+  const codes = (hourly.weather_code || []).slice(from, to)
+  if (!capes.length) return null
+  const maxCape = Math.max(...capes)
+  const hasStormCode = codes.some((c) => c >= 95)
+  if (hasStormCode || maxCape > 1500) return { level: 3, label: 'Orage probable', emoji: '⛈️', color: '#ef4444' }
+  if (maxCape > 800) return { level: 2, label: 'Orages possibles l’après-midi', emoji: '🌩️', color: '#f97316' }
+  if (maxCape > 350) return { level: 1, label: 'Faible instabilité', emoji: '🌤️', color: '#eab308' }
+  return { level: 0, label: 'Pas d’orage attendu', emoji: '✅', color: '#22c55e' }
+}
+
 // Score 0-100 : à quel point la journée est belle pour la haute montagne.
 export function dayScore(d, i) {
   if (!d) return 50

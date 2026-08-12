@@ -11,29 +11,48 @@ import Rankings from './pages/Rankings'
 import Bases, { BaseDetail } from './pages/Bases'
 import Camper from './pages/Camper'
 import Itineraire from './pages/Itineraire'
+import Today from './pages/Today'
+import Assistant from './pages/Assistant'
+import Autour from './pages/Autour'
+import Webcams from './pages/Webcams'
+import Costs from './pages/Costs'
+import Docs from './pages/Docs'
+import NightSpots from './pages/NightSpots'
 import Favorites from './pages/Favorites'
 import MapView from './components/MapView'
 
 const NAV = [
-  ['', 'Accueil', '🏔️'],
+  ['jour', 'Aujourd’hui', '☀️'],
   ['carte', 'Carte', '🗺️'],
   ['lieux', 'Lieux', '🥾'],
   ['planning', 'Planning', '📅'],
 ]
 const ALL_PAGES = [
-  ['', 'Accueil', '🏔️'],
+  ['jour', 'Aujourd’hui', '☀️'],
   ['carte', 'Carte', '🗺️'],
   ['lieux', 'Randonnées', '🥾'],
   ['planning', 'Planning', '📅'],
-  ['itineraire', 'Itinéraire', '🚗'],
+  ['assistant', 'Que faire ?', '🤔'],
+  ['autour', 'Autour du camp', '📍'],
   ['meteo', 'Météo', '🌤️'],
+  ['webcams', 'Webcams', '📷'],
+  ['nuits', 'Spots de nuit', '🌙'],
+  ['itineraire', 'Itinéraire', '🚗'],
   ['soleil', 'Golden hour', '🌇'],
   ['classements', 'Classements', '🏆'],
   ['bases', 'Bases', '⛺'],
   ['camping-car', 'Camping-car', '🚐'],
+  ['couts', 'Coûts', '💶'],
+  ['documents', 'Documents', '📄'],
   ['favoris', 'Carnet & favoris', '♥'],
+  ['', 'Accueil', '🏔️'],
 ]
-const NAV_DESKTOP = ALL_PAGES.map(([p, label]) => [p, label])
+const NAV_DESKTOP = [
+  ['jour', 'Aujourd’hui'], ['carte', 'Carte'], ['lieux', 'Randonnées'], ['planning', 'Planning'],
+  ['assistant', 'Que faire ?'], ['autour', 'Autour'], ['meteo', 'Météo'], ['webcams', 'Webcams'],
+  ['nuits', 'Nuits'], ['itineraire', 'Itinéraire'], ['soleil', 'Golden hour'], ['classements', 'Tops'],
+  ['bases', 'Bases'], ['camping-car', 'Camping-car'], ['couts', 'Coûts'], ['documents', 'Docs'], ['favoris', 'Carnet'],
+]
 
 function Shell() {
   const route = useRoute()
@@ -56,6 +75,13 @@ function Shell() {
       case 'lieux': return <Places />
       case 'lieu': return <PlaceDetail id={param} />
       case 'planning': return <Planning />
+      case 'jour': return <Today />
+      case 'assistant': return <Assistant />
+      case 'autour': return <Autour />
+      case 'webcams': return <Webcams />
+      case 'nuits': return <NightSpots />
+      case 'couts': return <Costs />
+      case 'documents': return <Docs />
       case 'itineraire': return <Itineraire />
       case 'meteo': return <Weather />
       case 'soleil': return <Sun />

@@ -27,7 +27,7 @@ export default function Home() {
           <h1>Dolomites 2026</h1>
           <p>Notre road-trip en camping-car avec notre chien.</p>
           <div className="hero-cta">
-            <a className="btn gold" href="#/lieux">Explorer</a>
+            <a className="btn gold" href="#/jour">☀️ Aujourd’hui</a>
             <a className="btn" href="#/carte">🗺️ Carte</a>
             <a className="btn" href="#/planning">📅 Planning</a>
             <a className="btn" href="#/lieux">🥾 Randonnées</a>

@@ -43,6 +43,21 @@ export default function Planning() {
         Fais glisser une journée (ou utilise les flèches) pour réorganiser : les dates restent, le contenu bouge.
         La pastille météo apparaît quand la date entre dans la fenêtre de prévision à 7 jours.
       </p>
+      <div className="timeline-strip">
+        {plan.map((d, i) => {
+          const isToday = d.date === new Date().toISOString().slice(0, 10)
+          const isDrive = d.drive && d.drive.km >= 100
+          return (
+            <a key={d.date} className={`tl-day ${isToday ? 'now' : ''}`} href={`#day-${i + 1}`}
+              onClick={(e) => { e.preventDefault(); document.getElementById(`day-${i + 1}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' }) }}>
+              <b>J{i + 1}</b>
+              <span className="tl-ico">{isDrive ? '🚗' : d.spots.length ? '🥾' : '🚐'}</span>
+              {new Date(d.date + 'T12:00').toLocaleDateString('fr-FR', { day: 'numeric', month: 'short' })}
+            </a>
+          )
+        })}
+      </div>
+
       <div style={{ display: 'grid', gap: 12 }}>
         {plan.map((day, i) => {
           const date = new Date(day.date + 'T12:00')
@@ -51,6 +66,7 @@ export default function Planning() {
           return (
             <div
               key={day.date}
+              id={`day-${i + 1}`}
               className={`card day-card ${over === i ? 'drag-over' : ''}`}
               draggable
               onDragStart={() => { dragIdx.current = i }}
