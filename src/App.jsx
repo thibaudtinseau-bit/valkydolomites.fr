@@ -6,7 +6,6 @@ import Places from './pages/Places'
 import PlaceDetail from './pages/PlaceDetail'
 import Planning from './pages/Planning'
 import Weather from './pages/Weather'
-import Sun from './pages/Sun'
 import Rankings from './pages/Rankings'
 import Bases, { BaseDetail } from './pages/Bases'
 import Camper from './pages/Camper'
@@ -27,31 +26,50 @@ const NAV = [
   ['lieux', 'Lieux', '🥾'],
   ['planning', 'Planning', '📅'],
 ]
-const ALL_PAGES = [
-  ['jour', 'Aujourd’hui', '☀️'],
-  ['carte', 'Carte', '🗺️'],
-  ['lieux', 'Randonnées', '🥾'],
-  ['planning', 'Planning', '📅'],
-  ['assistant', 'Que faire ?', '🤔'],
-  ['autour', 'Autour du camp', '📍'],
-  ['meteo', 'Météo', '🌤️'],
-  ['webcams', 'Webcams', '📷'],
-  ['nuits', 'Spots de nuit', '🌙'],
-  ['itineraire', 'Itinéraire', '🚗'],
-  ['soleil', 'Golden hour', '🌇'],
-  ['classements', 'Classements', '🏆'],
-  ['bases', 'Bases', '⛺'],
-  ['camping-car', 'Camping-car', '🚐'],
-  ['couts', 'Coûts', '💶'],
-  ['documents', 'Documents', '📄'],
-  ['favoris', 'Carnet & favoris', '♥'],
-  ['', 'Accueil', '🏔️'],
+// Navigation groupée : mêmes groupes sur desktop (menus déroulants) et mobile (sections du panneau)
+const NAV_GROUPS = [
+  { label: 'Aujourd’hui', to: 'jour', icon: '☀️' },
+  { label: 'Carte', to: 'carte', icon: '🗺️' },
+  {
+    label: 'Découvrir', icon: '🥾',
+    items: [
+      ['lieux', 'Randonnées & lieux', '🥾'],
+      ['classements', 'Classements & golden hour', '🏆'],
+      ['bases', 'Camps de base', '⛺'],
+    ],
+  },
+  {
+    label: 'Planifier', icon: '📅',
+    items: [
+      ['planning', 'Planning des 16 jours', '📅'],
+      ['itineraire', 'Itinéraire & km', '🚗'],
+      ['assistant', 'Que faire aujourd’hui ?', '🤔'],
+      ['autour', 'Autour du camp', '📍'],
+    ],
+  },
+  {
+    label: 'Conditions', icon: '🌤️',
+    items: [
+      ['meteo', 'Météo détaillée', '🌤️'],
+      ['webcams', 'Webcams en direct', '📷'],
+    ],
+  },
+  {
+    label: 'Pratique', icon: '🚐',
+    items: [
+      ['camping-car', 'Guide camping-car', '🚐'],
+      ['nuits', 'Spots de nuit', '🌙'],
+      ['couts', 'Coûts & budget', '💶'],
+      ['documents', 'Documents', '📄'],
+    ],
+  },
+  { label: 'Carnet', to: 'favoris', icon: '♥' },
 ]
-const NAV_DESKTOP = [
-  ['jour', 'Aujourd’hui'], ['carte', 'Carte'], ['lieux', 'Randonnées'], ['planning', 'Planning'],
-  ['assistant', 'Que faire ?'], ['autour', 'Autour'], ['meteo', 'Météo'], ['webcams', 'Webcams'],
-  ['nuits', 'Nuits'], ['itineraire', 'Itinéraire'], ['soleil', 'Golden hour'], ['classements', 'Tops'],
-  ['bases', 'Bases'], ['camping-car', 'Camping-car'], ['couts', 'Coûts'], ['documents', 'Docs'], ['favoris', 'Carnet'],
+const SHEET_SECTIONS = [
+  { title: 'Essentiels', items: [['jour', 'Aujourd’hui', '☀️'], ['carte', 'Carte', '🗺️'], ['lieux', 'Randonnées', '🥾'], ['planning', 'Planning', '📅'], ['favoris', 'Carnet', '♥'], ['', 'Accueil', '🏔️']] },
+  { title: 'Planifier', items: [['assistant', 'Que faire ?', '🤔'], ['autour', 'Autour du camp', '📍'], ['itineraire', 'Itinéraire', '🚗']] },
+  { title: 'Conditions', items: [['meteo', 'Météo', '🌤️'], ['webcams', 'Webcams', '📷']] },
+  { title: 'Découvrir & pratique', items: [['classements', 'Classements', '🏆'], ['bases', 'Bases', '⛺'], ['camping-car', 'Camping-car', '🚐'], ['nuits', 'Spots de nuit', '🌙'], ['couts', 'Coûts', '💶'], ['documents', 'Documents', '📄']] },
 ]
 
 function Shell() {
@@ -59,9 +77,16 @@ function Shell() {
   const { theme, setTheme } = useStore()
   const [page, param] = route
   const [menuOpen, setMenuOpen] = useState(false)
+  const [dropOpen, setDropOpen] = useState(null)
 
-  useEffect(() => { setMenuOpen(false) }, [page, param])
+  useEffect(() => { setMenuOpen(false); setDropOpen(null) }, [page, param])
   useEffect(() => { document.body.style.overflow = menuOpen ? 'hidden' : '' }, [menuOpen])
+  useEffect(() => {
+    if (dropOpen == null) return
+    const close = (e) => { if (!e.target.closest('.navdrop')) setDropOpen(null) }
+    document.addEventListener('click', close)
+    return () => document.removeEventListener('click', close)
+  }, [dropOpen])
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
@@ -84,7 +109,7 @@ function Shell() {
       case 'documents': return <Docs />
       case 'itineraire': return <Itineraire />
       case 'meteo': return <Weather />
-      case 'soleil': return <Sun />
+      case 'soleil': return <Rankings />
       case 'classements': return <Rankings />
       case 'bases': return <Bases />
       case 'base': return <BaseDetail id={param} />
@@ -104,9 +129,30 @@ function Shell() {
           Dolomites <span style={{ color: 'var(--accent)' }}>2026</span>
         </a>
         <nav>
-          {NAV_DESKTOP.map(([p, label]) => (
-            <a key={p} href={`#/${p}`} className={isActive(p) ? 'active' : ''}>{label}</a>
-          ))}
+          {NAV_GROUPS.map((g) => {
+            if (g.to != null) {
+              return <a key={g.label} href={`#/${g.to}`} className={isActive(g.to) ? 'active' : ''}>{g.label}</a>
+            }
+            const childActive = g.items.some(([p]) => isActive(p))
+            const open = dropOpen === g.label
+            return (
+              <div key={g.label} className="navdrop">
+                <button className={`navdrop-btn ${childActive ? 'active' : ''} ${open ? 'open' : ''}`}
+                  onClick={() => setDropOpen(open ? null : g.label)}>
+                  {g.label} <span style={{ fontSize: 9, opacity: 0.7 }}>▼</span>
+                </button>
+                {open && (
+                  <div className="navdrop-panel">
+                    {g.items.map(([p, label, ico]) => (
+                      <a key={p} href={`#/${p}`} className={isActive(p) ? 'active' : ''}>
+                        <span style={{ width: 22, display: 'inline-block' }}>{ico}</span>{label}
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )
+          })}
         </nav>
         <div className="top-actions">
           <button className="icon-btn" onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')} aria-label="Thème">
@@ -139,14 +185,19 @@ function Shell() {
           <div className="sheet-backdrop" onClick={() => setMenuOpen(false)} />
           <div className="sheet" role="dialog" aria-label="Toutes les pages">
             <div className="sheet-grab" />
-            <div className="sheet-grid">
-              {ALL_PAGES.map(([p, label, ico]) => (
-                <a key={p} href={`#/${p}`} className={`sheet-tile ${isActive(p) ? 'active' : ''}`} onClick={() => setMenuOpen(false)}>
-                  <span className="st-ico">{ico}</span>
-                  <span>{label}</span>
-                </a>
-              ))}
-            </div>
+            {SHEET_SECTIONS.map((sec) => (
+              <div key={sec.title}>
+                <div className="sheet-title">{sec.title}</div>
+                <div className="sheet-grid">
+                  {sec.items.map(([p, label, ico]) => (
+                    <a key={p} href={`#/${p}`} className={`sheet-tile ${isActive(p) ? 'active' : ''}`} onClick={() => setMenuOpen(false)}>
+                      <span className="st-ico">{ico}</span>
+                      <span>{label}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ))}
           </div>
         </>
       )}

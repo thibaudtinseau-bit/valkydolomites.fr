@@ -3,6 +3,8 @@ import { NEW_LOCATIONS, LOCATIONS, getPhotos } from '../data/locations'
 
 const RANKINGS = [
   { id: 'scenery', label: '🏔️ Plus beaux paysages', pick: (ls) => ls.filter((l) => l.status === 'new').sort((a, b) => (b.rating * 10 + b.sunset + b.sunrise) - (a.rating * 10 + a.sunset + a.sunrise)), sub: (l) => l.tagline },
+  { id: 'sunset', label: '🌇 Couchers de soleil', score: 'sunset', pick: (ls) => ls.filter((l) => l.sunset >= 5).sort((a, b) => b.sunset - a.sunset), sub: (l) => l.tagline },
+  { id: 'sunrise', label: '🌅 Levers de soleil', score: 'sunrise', pick: (ls) => ls.filter((l) => l.sunrise >= 5).sort((a, b) => b.sunrise - a.sunrise), sub: (l) => l.tagline },
   { id: 'hikes', label: '🥾 Meilleures randonnées', pick: (ls) => ls.filter((l) => l.status === 'new' && l.hike.distanceKm >= 6).sort((a, b) => (b.rating * 10 + b.hike.distanceKm / 2) - (a.rating * 10 + a.hike.distanceKm / 2)), sub: (l) => `${l.hike.distanceKm} km · ${l.hike.dplusM} m D+ · ${l.hike.difficulty}` },
   { id: 'dog', label: '🐶 Plus adaptées au chien', pick: (ls) => ls.filter((l) => l.status === 'new' && !l.avoidDog).sort((a, b) => (b.dog.stars * 10 - b.patou.level * 3) - (a.dog.stars * 10 - a.patou.level * 3)), sub: (l) => `Chien ${l.dog.stars}/5 · patous : niveau ${l.patou.level}` },
   { id: 'camper', label: '🚐 Plus adaptées au camping-car', pick: (ls) => ls.filter((l) => l.status === 'new').sort((a, b) => camperScore(b) - camperScore(a)), sub: (l) => l.camper.overnight },
@@ -21,7 +23,7 @@ const camperScore = (l) => {
 export default function Rankings() {
   const [tab, setTab] = useState('scenery')
   const r = RANKINGS.find((x) => x.id === tab)
-  const list = r.pick(LOCATIONS).slice(0, 10)
+  const list = r.pick(LOCATIONS).slice(0, r.score ? 20 : 10)
   return (
     <div className="page fade-in">
       <div className="eyebrow">Tops du voyage</div>
@@ -42,7 +44,9 @@ export default function Rankings() {
                 <h4>{l.name}</h4>
                 <p>{r.sub(l)}</p>
               </div>
-              {l.status === 'new' && l.rating > 0 && <div className="stars" style={{ flexShrink: 0, fontSize: 13 }}>{'★'.repeat(l.rating)}</div>}
+              {r.score
+                ? <div style={{ flexShrink: 0, fontSize: 13, fontWeight: 800, color: 'var(--gold)' }}>{l[r.score]}/10</div>
+                : l.status === 'new' && l.rating > 0 && <div className="stars" style={{ flexShrink: 0, fontSize: 13 }}>{'★'.repeat(l.rating)}</div>}
             </a>
           )
         })}

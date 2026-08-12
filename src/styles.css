@@ -101,13 +101,36 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .tabbar a.active .t-ico { transform: translateY(-2px) scale(1.12); }
 
 @media (min-width: 900px) {
-  .topbar nav { display: flex; overflow-x: auto; scrollbar-width: none; max-width: calc(100vw - 300px); }
-  .topbar nav::-webkit-scrollbar { display: none; }
+  .topbar nav { display: flex; }
   .topbar nav a { white-space: nowrap; flex-shrink: 0; }
   .tabbar, .sheet, .sheet-backdrop { display: none; }
   :root { --tab-h: 0px; }
   .page { padding-bottom: 60px; }
 }
+
+/* ─── Menus déroulants du header ─── */
+.navdrop { position: relative; }
+.navdrop-btn {
+  padding: 8px 13px; border-radius: 999px; font-size: 14px; font-weight: 600;
+  color: var(--text-2); transition: 0.2s; white-space: nowrap;
+}
+.navdrop-btn:hover, .navdrop-btn.open { color: var(--text); background: var(--card); }
+.navdrop-btn.active { color: var(--text); background: var(--card); box-shadow: inset 0 0 0 1px var(--stroke); }
+.navdrop-panel {
+  position: absolute; top: calc(100% + 8px); left: 0; z-index: 1300;
+  min-width: 232px; padding: 6px;
+  background: var(--card-solid); border: 1px solid var(--stroke); border-radius: 14px;
+  box-shadow: var(--shadow); display: grid; gap: 2px;
+  animation: rise 0.18s cubic-bezier(.22,.68,0,1) both;
+}
+.navdrop-panel a {
+  display: flex; align-items: center; padding: 9px 11px; border-radius: 9px;
+  font-size: 13.5px; font-weight: 600; color: var(--text-2); transition: 0.15s;
+}
+.navdrop-panel a:hover { background: var(--card); color: var(--text); }
+.navdrop-panel a.active { color: var(--accent); background: var(--card); }
+
+.sheet-title { font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-3); margin: 14px 4px 8px; }
 
 /* ─── Menu « Plus » (mobile / tablette) ─── */
 .sheet-backdrop {
