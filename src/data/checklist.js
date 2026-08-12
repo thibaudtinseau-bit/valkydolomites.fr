@@ -1,0 +1,98 @@
+// Checklist de départ détaillée, par blocs. Cochable et extensible dans l'app.
+let n = 0
+const item = (text) => ({ id: ++n, text, done: false })
+
+export const DEFAULT_CHECKLIST = [
+  {
+    id: 'chien',
+    title: '🐶 Le chien',
+    items: [
+      item('Passeport européen + carnet de santé (antirabique à jour, > 21 jours avant le départ)'),
+      item('Traitement antiparasitaire / anti-tiques fait la semaine du départ'),
+      item('Muselière (obligatoire dans les remontées mécaniques et transports italiens)'),
+      item('Harnais + laisse courte + longe 5-10 m'),
+      item('Gourde de rando + gamelle pliable'),
+      item('Bottillons de protection (pierriers) + baume coussinets'),
+      item('Croquettes pour 16 jours + friandises de rando'),
+      item('Tapis/couverture pour le camping-car + plaid pour les refuges'),
+      item('Serviette microfibre spéciale chien (pluie, ruisseaux)'),
+      item('Stock de sacs à déjections'),
+      item('Pince/carte à tiques + petite trousse véto (désinfectant, bande cohésive)'),
+      item('Numéros de vétérinaires notés : Bolzano, Ortisei, Cortina'),
+    ],
+  },
+  {
+    id: 'cc-technique',
+    title: '🚐 Camping-car — technique & papiers',
+    items: [
+      item('Niveaux faits : huile, lave-glace, liquide de refroidissement, AdBlue'),
+      item('Pression des pneus (chargé) + contrôle usure + kit/roue de secours'),
+      item('Cales de mise à niveau ×2'),
+      item('Câble électrique 25 m + adaptateur CEE (P17) pour les aires'),
+      item('Tuyau d’eau + raccords universels + entonnoir'),
+      item('Additifs WC + papier toilette spécial + gants'),
+      item('2 bouteilles de gaz PLEINES (chauffage : nuits < 5°C en altitude fin septembre)'),
+      item('Chaînes ou chaussettes neige (cols à 2 200 m, premières neiges possibles)'),
+      item('Carte grise, assurance + carte verte, permis, contrôle technique'),
+      item('Gilets jaunes ×2 + triangle (obligatoires en Italie)'),
+      item('Badge télépéage Europe (ou CB dédiée péages) — Fréjus, autoroutes italiennes'),
+    ],
+  },
+  {
+    id: 'energie',
+    title: '⚡ Énergie & autonomie (3 jours)',
+    items: [
+      item('Batterie cellule testée + chargée à bloc'),
+      item('Panneau solaire nettoyé et contrôlé'),
+      item('Power banks ×2 chargées (randos + soirées sans branchement)'),
+      item('Multiprise 12V/220V + tous les chargeurs (téléphones, montre, appareil photo)'),
+      item('Lampes frontales ×2 + piles de rechange (départs avant l’aube)'),
+      item('Réservoir d’eau propre plein au départ + jerrican d’appoint 10 L'),
+    ],
+  },
+  {
+    id: 'rando',
+    title: '🥾 Rando & montagne',
+    items: [
+      item('Chaussures de rando rodées (semelles contrôlées) + chaussures de repos'),
+      item('Bâtons de marche ×2 paires'),
+      item('Sacs à dos journée 25-30 L + housses de pluie'),
+      item('Système 3 couches chacun : mérinos, polaire, doudoune + veste imperméable'),
+      item('Bonnets + gants + tour de cou (2 400 m fin septembre = froid réel)'),
+      item('Casquettes, lunettes de soleil, crème solaire (la dolomie réverbère fort)'),
+      item('2 L d’eau/personne en poche à eau ou gourdes'),
+      item('Trousse premiers secours + couverture de survie + sifflet'),
+      item('Couteau multifonction + briquet'),
+      item('Cartes Tabacco 03/05/07/010 OU cartes hors-ligne téléchargées (Organic Maps / AllTrails)'),
+      item('Numéro secours montagne noté : 112 (Europe) / 118 (Italie)'),
+    ],
+  },
+  {
+    id: 'cuisine',
+    title: '🍝 Cuisine & courses',
+    items: [
+      item('Café + cafetière moka (vital)'),
+      item('Épicerie de base pour 3 jours d’autonomie (pâtes, riz, conserves, sauces)'),
+      item('Frigo/glacière : contrôle froid en roulant et à l’arrêt'),
+      item('Réchaud d’appoint + cartouches (pique-niques sommets)'),
+      item('Boîtes hermétiques, sacs congélation, alu, essuie-tout'),
+      item('Liquide vaisselle biodégradable + éponges'),
+      item('Thermos pour les départs matinaux'),
+      item('Planche + bon couteau + tire-bouchon (évidemment)'),
+    ],
+  },
+  {
+    id: 'electronique',
+    title: '📱 Électronique, argent & documents',
+    items: [
+      item('Forfaits téléphone : data UE vérifiée sur les 2 lignes'),
+      item('Appareil photo + batteries ×3 + cartes SD vides + trépied léger'),
+      item('Site valkydolomites.fr installé en PWA sur les 2 téléphones 😉'),
+      item('CB internationale + 200-300 € d’espèces (les refuges sont souvent cash only)'),
+      item('CEAM (carte européenne d’assurance maladie) ×2'),
+      item('Photocopies/scans des papiers dans le cloud'),
+      item('Jumelles (marmottes, chamois)'),
+      item('Livre / jeux pour les soirées pluie'),
+    ],
+  },
+]

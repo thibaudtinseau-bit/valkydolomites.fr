@@ -34,7 +34,10 @@ export default function Planning() {
       <div className="eyebrow">17 septembre → 2 octobre 2026</div>
       <div className="section-head" style={{ marginBottom: 6 }}>
         <h2>Planning — Montarnaud → Dolomites → Montarnaud</h2>
-        <button className="rank-tab" onClick={() => { if (confirm('Restaurer le planning d’origine ?')) setPlan(DEFAULT_PLAN) }}>↺ Réinitialiser</button>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <a className="rank-tab" href="#/itineraire">🗺️ Itinéraire & km</a>
+          <button className="rank-tab" onClick={() => { if (confirm('Restaurer le planning d’origine ?')) setPlan(DEFAULT_PLAN) }}>↺</button>
+        </div>
       </div>
       <p style={{ color: 'var(--text-2)', fontSize: 14, marginBottom: 16, maxWidth: 640 }}>
         Fais glisser une journée (ou utilise les flèches) pour réorganiser : les dates restent, le contenu bouge.
@@ -62,11 +65,18 @@ export default function Planning() {
               </div>
               <div className="day-body">
                 <h3>{day.title}</h3>
-                {basesById[day.base] && (
-                  <div style={{ fontSize: 12.5, color: 'var(--accent)', fontWeight: 700, marginTop: 2 }}>
-                    Base : {basesById[day.base].name}
-                  </div>
-                )}
+                <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center', marginTop: 4 }}>
+                  {basesById[day.base] && (
+                    <span style={{ fontSize: 12.5, color: 'var(--accent)', fontWeight: 700 }}>
+                      Base : {basesById[day.base].name}
+                    </span>
+                  )}
+                  {day.drive && (
+                    <span className="drive-chip" title={day.drive.label}>
+                      🚗 {day.drive.km} km · {day.drive.min >= 60 ? `${Math.floor(day.drive.min / 60)}h${String(day.drive.min % 60).padStart(2, '0')}` : `${day.drive.min} min`}
+                    </span>
+                  )}
+                </div>
                 <div className="day-spots">
                   {day.spots.map((id) => byId[id] && (
                     <a key={id} className="day-spot" href={`#/lieu/${id}`}>

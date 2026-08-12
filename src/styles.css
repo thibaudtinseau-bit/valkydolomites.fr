@@ -228,6 +228,18 @@ button { font: inherit; color: inherit; background: none; border: none; cursor: 
 .map-popup h4 { margin: 8px 0 2px; font-size: 15px; }
 .map-popup .mp-open { display: inline-block; margin-top: 8px; color: var(--accent); font-weight: 700; font-size: 13px; }
 
+/* ─── Itinéraire ─── */
+.route-dot {
+  width: 28px; height: 28px; border-radius: 50%;
+  display: grid; place-items: center;
+  font-size: 12px; font-weight: 900; color: #171207;
+  background: linear-gradient(135deg, var(--gold-2), var(--gold));
+  box-shadow: 0 3px 10px rgba(0,0,0,.45), inset 0 0 0 2px rgba(255,255,255,.5);
+}
+.route-dot.road { background: linear-gradient(135deg, #a7b6cf, #8d99ae); }
+.route-dot.home { background: linear-gradient(135deg, #4ade80, #2d6a4f); font-size: 14px; }
+.drive-chip { display: inline-flex; align-items: center; gap: 5px; font-size: 12px; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: var(--card); border: 1px solid var(--stroke); color: var(--text-2); }
+
 /* ─── Planning ─── */
 .day-card { display: flex; gap: 14px; padding: 16px; align-items: flex-start; transition: box-shadow .2s, transform .2s; }
 .day-card.dragging { opacity: 0.5; }

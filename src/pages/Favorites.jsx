@@ -6,6 +6,7 @@ import { useStore } from '../store'
 export default function Favorites() {
   const { favs, notes, done, checklist, setChecklist, plan } = useStore()
   const [newItem, setNewItem] = useState('')
+  const [newSection, setNewSection] = useState(null)
   const favLocs = favs.map((id) => byId[id]).filter(Boolean)
   const doneLocs = done.map((id) => byId[id]).filter(Boolean)
   const notedIds = Object.keys(notes).filter((id) => notes[id]?.trim() && byId[id])
@@ -20,12 +21,19 @@ export default function Favorites() {
     URL.revokeObjectURL(a.href)
   }
 
-  const toggleCheck = (id) => setChecklist((c) => c.map((x) => (x.id === id ? { ...x, done: !x.done } : x)))
-  const addCheck = () => {
+  const toggleCheck = (sectionId, itemId) =>
+    setChecklist((c) => c.map((s) => (s.id === sectionId
+      ? { ...s, items: s.items.map((x) => (x.id === itemId ? { ...x, done: !x.done } : x)) }
+      : s)))
+  const addCheck = (sectionId) => {
     if (!newItem.trim()) return
-    setChecklist((c) => [...c, { id: Date.now(), text: newItem.trim(), done: false }])
+    setChecklist((c) => c.map((s) => (s.id === sectionId
+      ? { ...s, items: [...s.items, { id: Date.now(), text: newItem.trim(), done: false }] }
+      : s)))
     setNewItem('')
   }
+  const totalItems = checklist.reduce((s, sec) => s + sec.items.length, 0)
+  const doneItems = checklist.reduce((s, sec) => s + sec.items.filter((x) => x.done).length, 0)
 
   return (
     <div className="page fade-in">
@@ -81,24 +89,46 @@ export default function Favorites() {
       </div>
 
       <div className="section">
-        <div className="section-head"><h2 style={{ fontSize: 20 }}>☑️ Checklist départ</h2></div>
-        <div className="card pad">
-          {checklist.map((c) => (
-            <label key={c.id} className={`check-row ${c.done ? 'done' : ''}`}>
-              <input type="checkbox" checked={c.done} onChange={() => toggleCheck(c.id)} />
-              {c.text}
-            </label>
-          ))}
-          <div style={{ display: 'flex', gap: 8, marginTop: 12 }}>
-            <input
-              value={newItem}
-              onChange={(e) => setNewItem(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && addCheck()}
-              placeholder="Ajouter un élément…"
-              style={{ flex: 1, background: 'var(--card)', border: '1px solid var(--stroke)', borderRadius: 12, padding: '10px 14px', color: 'var(--text)', font: 'inherit', fontSize: 14 }}
-            />
-            <button className="rank-tab" onClick={addCheck}>+ Ajouter</button>
-          </div>
+        <div className="section-head">
+          <h2 style={{ fontSize: 20 }}>☑️ Checklist départ</h2>
+          <span style={{ fontSize: 13.5, fontWeight: 800, color: doneItems === totalItems ? 'var(--green)' : 'var(--accent)' }}>
+            {doneItems}/{totalItems} {doneItems === totalItems ? '— prêts ! 🎉' : ''}
+          </span>
+        </div>
+        <div className="grid cols-2" style={{ alignItems: 'start' }}>
+          {checklist.map((sec) => {
+            const secDone = sec.items.filter((x) => x.done).length
+            return (
+              <div key={sec.id} className="card pad">
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 10, marginBottom: 6 }}>
+                  <h3 style={{ fontWeight: 850, fontSize: 15.5 }}>{sec.title}</h3>
+                  <span style={{ fontSize: 12, fontWeight: 800, color: secDone === sec.items.length ? 'var(--green)' : 'var(--text-3)', flexShrink: 0 }}>
+                    {secDone}/{sec.items.length}
+                  </span>
+                </div>
+                <div style={{ height: 4, borderRadius: 4, background: 'var(--stroke)', marginBottom: 8 }}>
+                  <div style={{ height: '100%', borderRadius: 4, width: `${(secDone / sec.items.length) * 100}%`, background: secDone === sec.items.length ? 'var(--green)' : 'var(--accent)', transition: 'width .3s' }} />
+                </div>
+                {sec.items.map((c) => (
+                  <label key={c.id} className={`check-row ${c.done ? 'done' : ''}`}>
+                    <input type="checkbox" checked={c.done} onChange={() => toggleCheck(sec.id, c.id)} />
+                    {c.text}
+                  </label>
+                ))}
+                <div style={{ display: 'flex', gap: 8, marginTop: 10 }}>
+                  <input
+                    value={newSection === sec.id ? newItem : ''}
+                    onFocus={() => setNewSection(sec.id)}
+                    onChange={(e) => { setNewSection(sec.id); setNewItem(e.target.value) }}
+                    onKeyDown={(e) => e.key === 'Enter' && addCheck(sec.id)}
+                    placeholder="Ajouter…"
+                    style={{ flex: 1, background: 'var(--card)', border: '1px solid var(--stroke)', borderRadius: 12, padding: '8px 12px', color: 'var(--text)', font: 'inherit', fontSize: 13 }}
+                  />
+                  <button className="rank-tab" onClick={() => addCheck(sec.id)} style={{ padding: '7px 13px' }}>+</button>
+                </div>
+              </div>
+            )
+          })}
         </div>
       </div>
     </div>

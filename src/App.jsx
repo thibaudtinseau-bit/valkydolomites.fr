@@ -10,6 +10,7 @@ import Sun from './pages/Sun'
 import Rankings from './pages/Rankings'
 import Bases, { BaseDetail } from './pages/Bases'
 import Camper from './pages/Camper'
+import Itineraire from './pages/Itineraire'
 import Favorites from './pages/Favorites'
 import MapView from './components/MapView'
 
@@ -22,7 +23,7 @@ const NAV = [
 ]
 const NAV_DESKTOP = [
   ['', 'Accueil'], ['carte', 'Carte'], ['lieux', 'Randonnées'], ['planning', 'Planning'],
-  ['meteo', 'Météo'], ['soleil', 'Golden hour'], ['classements', 'Classements'],
+  ['itineraire', 'Itinéraire'], ['meteo', 'Météo'], ['soleil', 'Golden hour'], ['classements', 'Classements'],
   ['bases', 'Bases'], ['camping-car', 'Camping-car'], ['favoris', 'Carnet'],
 ]
 
@@ -43,6 +44,7 @@ function Shell() {
       case 'lieux': return <Places />
       case 'lieu': return <PlaceDetail id={param} />
       case 'planning': return <Planning />
+      case 'itineraire': return <Itineraire />
       case 'meteo': return <Weather />
       case 'soleil': return <Sun />
       case 'classements': return <Rankings />
