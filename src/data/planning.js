@@ -5,7 +5,7 @@
 // drive : { km, min, label } — estimation de la route du jour (camping-car, pauses non comprises).
 export const DEFAULT_PLAN = [
   { date: '2026-09-17', title: 'Étape 1 — Lac du Bourget', base: '', spots: [], planB: null, drive: { km: 330, min: 210, label: 'Montarnaud → Aix-les-Bains' }, note: 'Départ de Montarnaud en début d’après-midi. ~3h30 de route (A9 → A7 → A48/A43) jusqu’à Aix-les-Bains. Balade du soir avec le chien au bord du lac du Bourget (esplanade et Petit Port très agréables). Nuit : aire camping-car d’Aix-les-Bains.' },
-  { date: '2026-09-18', title: 'Étape 2 — Chamonix & Mont-Blanc', base: '', spots: [], planB: null, drive: { km: 150, min: 165, label: 'Aix-les-Bains → Chamonix → Aoste (tunnel du Mont-Blanc)' }, note: '~1h45 de route par Annecy et la vallée de l’Arve, avec un arrêt photo possible au belvédère du Plateau d’Assy (vue frontale sur tout le massif du Mont-Blanc). Après-midi tranquille à Chamonix : balade avec le chien au Lac des Gaillands (plat, 30 min, le Mont-Blanc s’y reflète par beau temps) ou montée en téléphérique au Plan de l’Aiguille (chiens acceptés muselés, panorama vertigineux sur toute la chaîne). Fin d’après-midi : traversée du tunnel du Mont-Blanc (péage ~50-60 € en camping-car, réserver un créneau en ligne conseillé en saison) puis ~1h de route de plus jusqu’à Aoste, pour alléger l’étape du lendemain. Nuit : aire camping-car d’Aoste.' },
+  { date: '2026-09-18', title: 'Étape 2 — La Rosière & Mont-Blanc (col gratuit)', base: '', spots: [], planB: null, drive: { km: 185, min: 205, label: 'Aix-les-Bains → Aoste (Col du Petit-Saint-Bernard)' }, note: '~2h de route par Albertville, Moûtiers et Bourg-Saint-Maurice, puis montée à La Rosière : le grand balcon (1850 m) offre un panorama frontal sur tout le massif du Mont-Blanc, sans payer le tunnel — balade avec le chien sur les alpages avant de reprendre la route. Franchissement du Col du Petit-Saint-Bernard (2188 m, gratuit) puis descente par La Thuile et Pré-Saint-Didier jusqu’à Aoste (~1h de route en plus, pour alléger l’étape du lendemain). Vérifier l’état du col avant de partir (neige possible en cas de coup de froid) ; en repli, tunnel du Fréjus par Chambéry/Modane (moins cher que le Mont-Blanc). Nuit : aire camping-car d’Aoste.' },
   { date: '2026-09-19', title: 'Étape 3 — Lac de Côme', base: '', spots: [], planB: null, drive: { km: 175, min: 135, label: 'Aoste → Côme (Ivrea, Novare)' }, note: 'Descente tranquille depuis Aoste par Ivrea et Novare (~2h15) pour rejoindre le Lac de Côme en début d’après-midi. Reste de la journée et soirée au bord du lac : promenade avec le chien sur les rives de Côme ou d’Argegno, gelato obligatoire. Nuit : aire camping-car de Côme ou d’Argegno.' },
   { date: '2026-09-20', title: 'Étape 4 — Arrivée aux Dolomites', base: 'fassa', spots: ['lago-di-carezza', 'latemar'], planB: 'lago-di-carezza', drive: { km: 300, min: 225, label: 'Côme → Obereggen (Bergame, Vérone, A22)' }, note: '~3h45 de route (Lecco/Bergame → Brescia → Vérone → A22 → Val d’Ega). Arrivée en fin d’après-midi : premier bol de dolomie avec le tour du Lago di Carezza (déjà connu, parfait pour dérouiller les pattes) et, si l’énergie suit, l’entrée du labyrinthe du Latemar au-dessus d’Obereggen. Nuit : Obereggen ou aire de Canazei.' },
   { date: '2026-09-21', title: 'La terrasse des Dolomites', base: 'fassa', spots: ['passo-sella', 'lago-fedaia'], planB: 'lago-fedaia', drive: { km: 45, min: 70, label: 'Obereggen → Pordoi → Fedaia' }, note: 'Sass Pordoi tôt, plateau du Sella, Piz Boè si le chien est en forme. Fin de journée : Lago Fedaia au pied de la Marmolada, nuit possible au barrage.' },
@@ -26,7 +26,7 @@ export const DEFAULT_PLAN = [
 export const NIGHT_STOPS = [
   { days: 'Départ', label: 'Montarnaud', coords: [43.649, 3.699], kind: 'home' },
   { days: 'J1', label: 'Aix-les-Bains · lac du Bourget', coords: [45.694, 5.889], kind: 'road' },
-  { days: 'J2', label: 'Chamonix (jour) → Aoste (nuit)', coords: [45.737, 7.315], kind: 'road' },
+  { days: 'J2', label: 'La Rosière (jour) → Aoste (nuit)', coords: [45.737, 7.315], kind: 'road' },
   { days: 'J3', label: 'Lac de Côme', coords: [45.808, 9.085], kind: 'road' },
   { days: 'J4-J5', label: 'Obereggen / Canazei', coords: [46.407, 11.665], kind: 'mtn' },
   { days: 'J5', label: 'Lago Fedaia', coords: [46.457, 11.863], kind: 'mtn' },
@@ -43,7 +43,7 @@ export const NIGHT_STOPS = [
 
 export const ROUTE_PATH = [
   [43.649, 3.699], [43.61, 3.87], [43.83, 4.36], [44.14, 4.81], [44.93, 4.89], [45.19, 5.72], [45.56, 5.92], [45.694, 5.889],
-  [45.83, 6.15], [45.9, 6.5], [45.9237, 6.8694], [45.832, 6.964], [45.797, 6.969], [45.737, 7.315], [45.468, 7.874],
+  [45.675, 6.392], [45.485, 6.531], [45.619, 6.769], [45.618, 6.858], [45.683, 6.884], [45.717, 6.949], [45.755, 7.017], [45.737, 7.315], [45.468, 7.874],
   [45.55, 8.6], [45.75, 9.0], [45.808, 9.085],
   [45.54, 10.22], [45.44, 10.99], [46.07, 11.12], [46.49, 11.35], [46.363, 11.523], [46.41, 11.575], [46.477, 11.771],
   [46.488, 11.812], [46.457, 11.863], [46.477, 11.771], [46.509, 11.756], [46.556, 11.758], [46.575, 11.672],

@@ -38,8 +38,8 @@ export const NIGHT_SPOTS = [
     places: '~40', price: '≈ 12-15 €/nuit', noise: 2, view: 3, sun4g: 5, pente: 5, ombre: 3, sunrise: 3, sunset: 3, crowd: 2,
     services: { eau: true, vidange: true, elec: true },
     starlink: 'Fond de vallée encaissé — correct en journée',
-    rules: 'Aire officielle, sur la route après le tunnel du Mont-Blanc.',
-    note: 'Journée passée à Chamonix (glacier des Bossons, Lac des Gaillands) puis descente par le tunnel du Mont-Blanc en fin d’après-midi pour couper la route du lendemain. Balade courte dans la vieille ville romaine d’Aoste avant la nuit.',
+    rules: 'Aire officielle, sur la route après le Col du Petit-Saint-Bernard.',
+    note: 'Après-midi à La Rosière (panorama Mont-Blanc, balade chien) puis franchissement du Col du Petit-Saint-Bernard (gratuit) et descente par La Thuile en fin d’après-midi pour couper la route du lendemain. Balade courte dans la vieille ville romaine d’Aoste avant la nuit.',
   },
   {
     id: 'como', name: 'Area sosta Côme / Argegno', when: 'J3 · 19/09', type: 'Aire officielle',
