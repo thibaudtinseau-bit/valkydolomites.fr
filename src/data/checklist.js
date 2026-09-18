@@ -35,7 +35,7 @@ export const DEFAULT_CHECKLIST = [
       item('Chaînes ou chaussettes neige (cols à 2 200 m, premières neiges possibles)'),
       item('Carte grise, assurance + carte verte, permis, contrôle technique'),
       item('Gilets jaunes ×2 + triangle (obligatoires en Italie)'),
-      item('Badge télépéage Europe (ou CB dédiée péages) — tunnel du Mont-Blanc, autoroutes italiennes'),
+      item('Badge télépéage Europe (ou CB dédiée péages) — autoroutes italiennes (col du Petit-Saint-Bernard gratuit)'),
     ],
   },
   {
