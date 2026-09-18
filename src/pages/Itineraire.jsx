@@ -101,7 +101,7 @@ export default function Itineraire() {
       <p className="notice">
         Temps estimés en camping-car, hors pauses (compter +30-45 min de pauses chien par grande étape).
         Le tracé sur la carte est schématique — la navigation précise se fait sur Google Maps / Waze le jour J.
-        Péages notables : autoroutes italiennes, route des Tre Cime (~45 €). Le Col du Petit-Saint-Bernard (J2, vers Aoste) est gratuit — pas besoin du tunnel du Mont-Blanc.
+        Péages notables : autoroutes italiennes, route des Tre Cime (~45 €). Le Col du Grand-Saint-Bernard (J2, Chamonix → Aoste via la Suisse) est gratuit — évite le tunnel du Mont-Blanc (80-130 € en camping-car).
       </p>
     </div>
   )
