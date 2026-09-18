@@ -4,7 +4,7 @@
 export const NIGHT_BY_DATE = {
   '2026-09-16': 'home',
   '2026-09-17': 'aix',
-  '2026-09-18': 'chamonix',
+  '2026-09-18': 'aoste',
   '2026-09-19': 'como',
   '2026-09-20': 'obereggen',
   '2026-09-21': 'fedaia',
@@ -33,13 +33,13 @@ export const NIGHT_SPOTS = [
     note: 'Balade du soir sur l’esplanade du lac à 5 min à pied. Boulangeries en ville.',
   },
   {
-    id: 'chamonix', name: 'Aire camping-car des Bossons (Chamonix)', when: 'J2 · 18/09', type: 'Aire officielle',
-    coords: [45.9084, 6.8686], gps: '45.90840, 6.86860',
-    places: '~50', price: '≈ 12-16 €/nuit', noise: 2, view: 5, sun4g: 4, pente: 5, ombre: 3, sunrise: 4, sunset: 5, crowd: 3,
+    id: 'aoste', name: 'Area sosta Aoste', when: 'J2 · 18/09', type: 'Aire officielle',
+    coords: [45.737, 7.315], gps: '45.73700, 7.31500',
+    places: '~40', price: '≈ 12-15 €/nuit', noise: 2, view: 3, sun4g: 5, pente: 5, ombre: 3, sunrise: 3, sunset: 3, crowd: 2,
     services: { eau: true, vidange: true, elec: true },
-    starlink: 'Vallée encaissée — dégagé plein sud sur le glacier des Bossons',
-    rules: 'Aire officielle, arriver avant le coup du soir en saison.',
-    note: 'Vue directe sur le glacier des Bossons et l’aiguille du Midi. Lac des Gaillands à 10 min en balade.',
+    starlink: 'Fond de vallée encaissé — correct en journée',
+    rules: 'Aire officielle, sur la route après le tunnel du Mont-Blanc.',
+    note: 'Journée passée à Chamonix (glacier des Bossons, Lac des Gaillands) puis descente par le tunnel du Mont-Blanc en fin d’après-midi pour couper la route du lendemain. Balade courte dans la vieille ville romaine d’Aoste avant la nuit.',
   },
   {
     id: 'como', name: 'Area sosta Côme / Argegno', when: 'J3 · 19/09', type: 'Aire officielle',
