@@ -93,7 +93,7 @@ export const NIGHT_SPOTS = [
     services: { eau: true, vidange: true, elec: true },
     starlink: 'OK',
     rules: 'Réserver Pontives en ligne si possible. Alternative : aire de Selva (46.552, 11.755), premier arrivé, plus haut dans la vallée.',
-    note: '🏋️ Move Fitnesscenter sur la même zone artisanale (Pontives 15) : TECA / Technogym / Matrix / Life Fitness, 6h-23h, ☎ +39 351 661 5789 — demander le tarif journalier. 10 min de la benne de Seceda à Ortisei, 25 min de Siusi pour le lendemain.',
+    note: '🏋️ Move Fitnesscenter sur la même zone artisanale (Pontives 15) : TECA / Technogym / Matrix / Life Fitness, 6h-23h, ☎ +39 351 661 5789 — demander le tarif journalier. 30 min du Passo Sella et 25 min de Siusi pour le lendemain (départ 7h pour passer le contrôle de St. Valentin avant 9h).',
   },
   {
     id: 'funes', name: 'Area sosta Funes (San Pietro)', when: 'J10 · 26/09', type: 'Aire officielle',
@@ -111,7 +111,7 @@ export const NIGHT_SPOTS = [
     services: { eau: true, vidange: true, elec: true },
     starlink: 'Inutile : wifi du camping excellent',
     rules: 'Camping — chiens bienvenus, spa sur place. Ouvert jusqu’au 1er novembre : aucun risque de fermeture automnale.',
-    note: 'La nuit “confort” du voyage : spa, restaurant, laverie, douches ★★★. Völser Weiher à pied. ⚠️ Ne pas tenter de monter à Compatsch en van : route interdite 9h-17h et parkings P1/P2 sur réservation en ligne obligatoire depuis 2026 (30 €/jour). On monte en cabinovia depuis Siusi.',
+    note: 'La nuit “confort” du voyage : spa, restaurant, laverie, douches ★★★. Völser Weiher à pied. ⚠️ La montée à Compatsch se fait en van AVANT 9h (route ouverte aux véhicules privés avant 9h et après 17h — c’est ce qui permet d’éviter la cabinovia), avec le parking P2 réservé en ligne la veille sur seiseralm.it/parking : obligatoire depuis 2026, 30 €/jour. On redescend après 17h et on arrive ici pour la nuit.',
   },
   {
     id: 'corvara', name: 'Area sosta Corvara', when: '⚠️ Non programmé — journée Alta Badia supprimée', type: 'Aire officielle',
