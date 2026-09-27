@@ -1108,6 +1108,58 @@ export const LOCATIONS = [
   { id: 'pecol', name: 'Pecol', area: 'cortina', coords: [46.3890, 12.1060], rating: 0, status: 'visited', avoidDog: false, tagline: 'Au pied de la Civetta — déjà visité.', description: 'Village du haut Zoldo déjà connu.', why: ['—'], whyNot: ['Déjà vu.'], hike: { distanceKm: 0, dplusM: 0, timeH: '—', altMaxM: 1380, difficulty: 'Facile', start: '—' }, links: { gpx: '', gmaps: 'https://www.google.com/maps/search/?api=1&query=Pecol+Zoldo', official: '' }, practical: { parkingPrice: '—', cablecarPrice: '—', hours: '—', suggestedTime: '—' }, dog: { stars: 4, traits: { laisse: true, museliere: false, etroits: false, cables: false, vide: false, pierriers: false, foret: true, prairie: true, eau: true, ombre: true, demiTour: true }, notes: '—' }, patou: { level: 2, reason: 'Alpages de la Civetta.' }, camper: { maxHeight: 'Aucune', maxLength: 'OK', parking: '—', overnight: '—', aire: '—', services: { vidange: '—', eau: '—', elec: '—' }, notes: '' }, sunset: 5, sunrise: 5, crowd: 1, refuge: '—', resto: '—' },
   { id: 'malcesine', name: 'Malcesine', area: 'garda', coords: [45.7640, 10.8090], rating: 0, status: 'visited', avoidDog: false, tagline: 'Le Lac de Garde version château — déjà savouré.', description: 'Étape déjà connue au bord du Garde, hors Dolomites.', why: ['—'], whyNot: ['Déjà vu, hors itinéraire 2026.'], hike: { distanceKm: 0, dplusM: 0, timeH: '—', altMaxM: 90, difficulty: 'Facile', start: '—' }, links: { gpx: '', gmaps: 'https://www.google.com/maps/search/?api=1&query=Malcesine', official: '' }, practical: { parkingPrice: '—', cablecarPrice: '—', hours: '—', suggestedTime: '—' }, dog: { stars: 3, traits: { laisse: true, museliere: false, etroits: false, cables: false, vide: false, pierriers: false, foret: false, prairie: false, eau: true, ombre: true, demiTour: true }, notes: '—' }, patou: { level: 0, reason: 'Zone urbaine lacustre.' }, camper: { maxHeight: 'Aucune', maxLength: 'OK', parking: '—', overnight: '—', aire: '—', services: { vidange: '—', eau: '—', elec: '—' }, notes: '' }, sunset: 7, sunrise: 4, crowd: 4, refuge: '—', resto: '—' },
   { id: 'lago-di-garda', name: 'Lac de Garde', area: 'garda', coords: [45.8800, 10.8600], rating: 0, status: 'visited', avoidDog: false, tagline: 'Déjà exploré — hors du périmètre 2026.', description: 'Le grand lac, déjà découvert lors d’un précédent voyage.', why: ['—'], whyNot: ['Déjà vu, hors itinéraire.'], hike: { distanceKm: 0, dplusM: 0, timeH: '—', altMaxM: 65, difficulty: 'Facile', start: '—' }, links: { gpx: '', gmaps: 'https://www.google.com/maps/search/?api=1&query=Lago+di+Garda', official: '' }, practical: { parkingPrice: '—', cablecarPrice: '—', hours: '—', suggestedTime: '—' }, dog: { stars: 3, traits: { laisse: true, museliere: false, etroits: false, cables: false, vide: false, pierriers: false, foret: false, prairie: false, eau: true, ombre: true, demiTour: true }, notes: '—' }, patou: { level: 0, reason: 'Zone lacustre urbanisée.' }, camper: { maxHeight: 'Aucune', maxLength: 'OK', parking: '—', overnight: '—', aire: '—', services: { vidange: '—', eau: '—', elec: '—' }, notes: '' }, sunset: 6, sunrise: 4, crowd: 5, refuge: '—', resto: '—' },
+  // ─────────────────────────── AJOUT DU 27/09 — RETOUR PAR LE STELVIO ───────────────────────────
+  {
+    id: 'stelvio-goldsee',
+    name: 'Passo dello Stelvio — Dreisprachenspitze & Goldseeweg',
+    area: '',
+    coords: [46.5286, 10.4531],
+    rating: 4, status: 'new', avoidDog: false,
+    tagline: 'Le plus haut col routier d’Italie, à pied : un balcon de 14-18 face à l’Ortles, sans remontée.',
+    description:
+      "Depuis le col (2 758 m), une large piste grimpe en 20-25 min à la Dreisprachenspitze (2 843 m), la « cime des trois langues » où se touchaient l’Italie, la Suisse et l’Autriche-Hongrie. Le Goldseeweg (sentier n° 20) file ensuite sur l’ancienne route militaire austro-hongroise, à flanc sud de la crête et en légère descente : camp Lempruch, tranchées et positions de la Grande Guerre, puis le Goldsee (Lago d’Oro, 2 708 m) et la Goldsee-Stellung qui domine Trafoi. L’Ortles et ses glaciers restent en face tout du long. En aller-retour depuis le col, le van ne bouge pas — la suite du sentier plonge sur la Furkelhütte et Trafoi, à ne pas faire.",
+    why: [
+      'Une vraie rando d’altitude, entre 2 700 et 2 850 m, sans un seul téléphérique.',
+      'Face à face avec l’Ortles (3 905 m) et le glacier de Trafoi pendant toute la balade.',
+      'Histoire à ciel ouvert : positions et tranchées de 14-18 avec panneaux explicatifs.',
+      'Pile sur la route du retour : on redescend sur Bormio l’après-midi.',
+    ],
+    whyNot: [
+      '25 km et 48 lacets pour monter depuis Prato : à faire tôt, dans le frais.',
+      'Zéro ombre, zéro eau, et ça peut souffler fort sur la crête.',
+      'Après la Dreisprachenspitze le chemin se rétrécit et devient caillouteux : laisse courte.',
+    ],
+    hike: { distanceKm: 7.5, dplusM: 300, timeH: '2h30 – 3h', altMaxM: 2843, difficulty: 'Moyen', start: 'Parking du Passo dello Stelvio (2 758 m)' },
+    links: {
+      gpx: 'https://www.bergwelten.com/t/w/19238',
+      gmaps: 'https://www.google.com/maps/search/?api=1&query=Passo+dello+Stelvio',
+      official: 'https://www.nationalpark-stelvio.it/',
+    },
+    practical: {
+      parkingPrice: 'Parkings au col, le long de la route',
+      cablecarPrice: 'Aucune remontée',
+      hours: 'Sentier réservé aux piétons de 9h à 16h — VTT autorisés seulement avant 9h et après 16h',
+      suggestedTime: '3h au col, + 1h de montée depuis Prato et 40 min de descente sur Bormio',
+    },
+    dog: {
+      stars: 3,
+      traits: { laisse: true, museliere: false, etroits: true, cables: false, vide: false, pierriers: true, foret: false, prairie: false, eau: false, ombre: false, demiTour: true },
+      notes: 'Large piste jusqu’à la Dreisprachenspitze, puis sentier étroit à flanc avec blocs et éboulis : laisse courte et demi-tour dès que ça ne lui plaît pas. Pas d’eau, pas d’ombre : gourde obligatoire. Aucun câble.',
+    },
+    patou: { level: 0, reason: 'Terrain 100 % minéral entre 2 700 et 2 850 m, aucun alpage : pas de troupeau, pas de chien de protection.' },
+    camper: {
+      maxHeight: 'Aucune limite',
+      maxLength: 'OK — lacets serrés côté Prato, tunnels étroits côté Bormio : doucement',
+      parking: 'Parkings du col, le long de la route et derrière les stands',
+      overnight: 'Non prévue — on redescend sur Bormio l’après-midi',
+      aire: 'Secteur Bormio (aire municipale ou Camping Cima Piazzi)',
+      services: { vidange: 'Bormio', eau: 'Bormio', elec: 'Camping Cima Piazzi (Tola)' },
+      notes: 'Col ouvert depuis le 22/05/2026, fermeture prévue début novembre. Repli s’il ferme : la Suisse par Müstair, le col du Fuorn, l’Engadine et la Maloja.',
+    },
+    sunset: 6, sunrise: 7, crowd: 3,
+    refuge: 'Rifugio Garibaldi (Dreisprachenspitze, 2 843 m)',
+    resto: 'Hôtels et stands du col',
+  },
 ]
 
 export const byId = Object.fromEntries(LOCATIONS.map((l) => [l.id, l]))
