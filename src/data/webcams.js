@@ -1,10 +1,6 @@
 // Webcams des Dolomites. `img` = flux image intégrable (foto-webcam.eu, vérifié) ;
 // sinon `url` = page officielle à ouvrir.
 export const WEBCAMS = [
-  { id: 'trafoi', name: 'Trafoi (1 543 m) — versant nord du Stelvio', sector: 'Stelvio / Val Venosta',
-    img: 'https://www.foto-webcam.eu/webcam/trafoi/current/720.jpg',
-    url: 'https://www.foto-webcam.eu/webcam/trafoi/',
-    note: 'À checker au réveil le 28/09 : ciel, neige sur l’Ortles et la route du col avant de monter.' },
   { id: 'dreizinnenblick', name: 'Tre Cime (Dreizinnenblick)', sector: 'Misurina / Tre Cime',
     img: 'https://www.foto-webcam.eu/webcam/dreizinnenblick/current/720.jpg',
     url: 'https://www.foto-webcam.eu/webcam/dreizinnenblick/',
