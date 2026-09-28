@@ -5,7 +5,7 @@ Compagnon de voyage interactif pour notre road-trip dans les Dolomites du **17 s
 ## Fonctionnalités
 
 - **Carte interactive** (Leaflet + CARTO) — points colorés par note, fiches complètes au clic
-- **23 nouveaux lieux** avec fiche détaillée : distance, D+, difficulté, GPX, prix, horaires
+- **24 nouveaux lieux** avec fiche détaillée : distance, D+, difficulté, GPX, prix, horaires
 - **🐶 Compatibilité chien** notée sur 5 + 11 critères (laisse, muselière, câbles, pierriers…)
 - **Risque patous** : indicateur 5 niveaux avec justification par terrain
 - **🚐 Compatibilité camping-car** : hauteur, longueur, nuit sur place, vidange, eau, élec
