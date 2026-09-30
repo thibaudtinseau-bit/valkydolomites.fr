@@ -42,7 +42,7 @@ const NAV_GROUPS = [
   {
     label: 'Planifier', icon: '📅',
     items: [
-      ['planning', 'Planning des 16 jours', '📅'],
+      ['planning', 'Planning des 15 jours', '📅'],
       ['itineraire', 'Itinéraire & km', '🚗'],
       ['assistant', 'Que faire aujourd’hui ?', '🤔'],
       ['autour', 'Autour du camp', '📍'],
