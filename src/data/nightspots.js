@@ -16,7 +16,7 @@ export const NIGHT_BY_DATE = {
   '2026-09-27': 'lana',
   '2026-09-28': 'peschiera',
   '2026-09-29': 'garda',
-  '2026-09-30': 'sisteron',
+  '2026-09-30': 'forcalquier',
   '2026-10-01': 'home',
 }
 export const HOME = { id: 'home', name: 'Montarnaud (maison)', coords: [43.649, 3.699], gps: '43.64900, 3.69900' }
@@ -140,7 +140,16 @@ export const NIGHT_SPOTS = [
     note: 'Départ à pied de la boucle Rocca di Garda – Eremo – Punta San Vigilio. Centre de Garda et lac à 10 min. Aucun spot imposé : on peut aussi revenir dormir à Peschiera.',
   },
   {
-    id: 'sisteron', name: 'Aire Camping-Car Park de Sisteron (gare)', when: 'J14 · 30/09', type: 'Aire officielle',
+    id: 'forcalquier', name: 'Aire camping-car de Forcalquier (Espace Bonne Fontaine)', when: 'J14 · 30/09', type: 'Aire officielle',
+    coords: [43.9585, 5.7905], gps: '43.95848, 5.79053 — parking de l’Espace culturel Bonne Fontaine, avenue Saint-Promasse (D4100)',
+    places: '~20, sur une seule file', price: 'Gratuit, services compris', noise: 2, view: 2, sun4g: 5, pente: 4, ombre: 2, sunrise: 3, sunset: 3, crowd: 3,
+    services: { eau: true, vidange: true, elec: false },
+    starlink: 'OK',
+    rules: 'Aire communale gratuite, ouverte toute l’année, 48 h maximum. Eau et vidanges gratuites, pas d’électricité. Parfois fermée lors d’événements locaux.',
+    note: 'Calme d’après les avis 2025-2026, mais « peu de place » signalé en septembre 2026 : arriver en fin d’après-midi. Intermarché à 100 m, vieille ville et citadelle à 10 min à pied. Les Pénitents des Mées à 25 min et Ganagobie à 20 min pour le lendemain.',
+  },
+  {
+    id: 'sisteron', name: 'Aire Camping-Car Park de Sisteron (gare)', when: '⚠️ Non programmé — nuit finalement à Forcalquier', type: 'Aire officielle',
     coords: [44.190, 5.943], gps: '44.19000, 5.94300 — approximatif, viser 28 avenue de la Libération, à côté de la gare SNCF',
     places: '20', price: '15 € / 24 h, 6 € les 6 h — électricité, eau, vidange et Wi-Fi compris', noise: 3, view: 3, sun4g: 5, pente: 5, ombre: 2, sunrise: 3, sunset: 3, crowd: 3,
     services: { eau: true, vidange: true, elec: true },
@@ -230,7 +239,7 @@ export const NIGHT_SPOTS = [
     note: 'Balade du soir sur les rives du Garde, Malcesine en face — souvenirs.',
   },
   {
-    id: 'briancon', name: 'Aire de Briançon', when: '⚠️ Non programmé — retour avancé, nuit à Sisteron', type: 'Aire officielle',
+    id: 'briancon', name: 'Aire de Briançon', when: '⚠️ Non programmé — retour avancé, nuit à Forcalquier', type: 'Aire officielle',
     coords: [44.8998, 6.6353], gps: '44.89980, 6.63530',
     places: '~25', price: '≈ 10-13 €/nuit', noise: 2, view: 4, sun4g: 4, pente: 5, ombre: 2, sunrise: 3, sunset: 3, crowd: 2,
     services: { eau: true, vidange: true, elec: true },
