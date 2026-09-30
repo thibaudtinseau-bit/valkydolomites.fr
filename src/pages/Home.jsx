@@ -23,7 +23,7 @@ export default function Home() {
         <div className="hero-bg" style={{ backgroundImage: heroPhoto ? `url(${heroPhoto.url})` : 'linear-gradient(160deg,#101a2e,#1f4d3a)' }} />
         <div className="hero-veil" />
         <div className="hero-inner">
-          <span className="hero-kicker">🚐 17 septembre → 2 octobre 2026 · 🐶 avec Valky</span>
+          <span className="hero-kicker">🚐 17 septembre → 1er octobre 2026 · 🐶 avec Valky</span>
           <h1>Dolomites 2026</h1>
           <p>Notre road-trip en camping-car avec notre chien.</p>
           <div className="hero-cta">

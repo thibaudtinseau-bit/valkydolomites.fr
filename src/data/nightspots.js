@@ -16,9 +16,8 @@ export const NIGHT_BY_DATE = {
   '2026-09-27': 'lana',
   '2026-09-28': 'peschiera',
   '2026-09-29': 'garda',
-  '2026-09-30': 'como',
-  '2026-10-01': 'briancon',
-  '2026-10-02': 'home',
+  '2026-09-30': 'sisteron',
+  '2026-10-01': 'home',
 }
 export const HOME = { id: 'home', name: 'Montarnaud (maison)', coords: [43.649, 3.699], gps: '43.64900, 3.69900' }
 
@@ -42,7 +41,7 @@ export const NIGHT_SPOTS = [
     note: 'Journée à Chamonix (glacier des Bossons, Lac des Gaillands) puis bascule par la Suisse en fin d’après-midi : Col de la Forclaz jusqu’à Martigny, puis Col du Grand-Saint-Bernard (gratuit) — pour éviter le tunnel du Mont-Blanc, bien plus cher. Balade courte dans la vieille ville romaine d’Aoste avant la nuit.',
   },
   {
-    id: 'como', name: 'Area sosta Côme / Argegno', when: 'J3 · 19/09 et J14 · 30/09', type: 'Aire officielle',
+    id: 'como', name: 'Area sosta Côme / Argegno', when: 'J3 · 19/09', type: 'Aire officielle',
     coords: [45.8081, 9.0852], gps: '45.80810, 9.08520',
     places: '~30', price: '≈ 15-20 €/nuit', noise: 2, view: 4, sun4g: 5, pente: 5, ombre: 3, sunrise: 3, sunset: 4, crowd: 4,
     services: { eau: true, vidange: true, elec: true },
@@ -141,6 +140,15 @@ export const NIGHT_SPOTS = [
     note: 'Départ à pied de la boucle Rocca di Garda – Eremo – Punta San Vigilio. Centre de Garda et lac à 10 min. Aucun spot imposé : on peut aussi revenir dormir à Peschiera.',
   },
   {
+    id: 'sisteron', name: 'Aire Camping-Car Park de Sisteron (gare)', when: 'J14 · 30/09', type: 'Aire officielle',
+    coords: [44.190, 5.943], gps: '44.19000, 5.94300 — approximatif, viser 28 avenue de la Libération, à côté de la gare SNCF',
+    places: '20', price: '15 € / 24 h, 6 € les 6 h — électricité, eau, vidange et Wi-Fi compris', noise: 3, view: 3, sun4g: 5, pente: 5, ombre: 2, sunrise: 3, sunset: 3, crowd: 3,
+    services: { eau: true, vidange: true, elec: true },
+    starlink: 'Ville — inutile, Wi-Fi fourni',
+    rules: 'Réseau Camping-Car Park : paiement par carte à la borne, accès de 8h à 23h du 1er septembre au 31 décembre, réservation seulement au-delà de 3 nuits. Chiens en laisse.',
+    note: 'Sur la route Napoléon, vue sur la citadelle, vieille ville à 700 m à pied. Les Pénitents des Mées à 20 min et le prieuré de Ganagobie à 25 min pour le lendemain. Repli gratuit : parking des Pénitents aux Mées, avec eau et poubelles, nuit tolérée mais parfois bruyant.',
+  },
+  {
     id: 'resia', name: 'Aire du Lago di Resia (Curon Venosta)', when: '⚠️ Non programmé — journée autrichienne abandonnée le 27/09', type: 'Aire privée',
     coords: [46.802, 10.540], gps: '46.80200, 10.54000 — approximatif, viser Curon Venosta / Reschensee',
     places: 'Grand parking en terre', price: '20 € / 24 h', noise: 2, view: 5, sun4g: 4, pente: 4, ombre: 1, sunrise: 4, sunset: 4, crowd: 2,
@@ -222,7 +230,7 @@ export const NIGHT_SPOTS = [
     note: 'Balade du soir sur les rives du Garde, Malcesine en face — souvenirs.',
   },
   {
-    id: 'briancon', name: 'Aire de Briançon', when: 'J15 · 01/10', type: 'Aire officielle',
+    id: 'briancon', name: 'Aire de Briançon', when: '⚠️ Non programmé — retour avancé, nuit à Sisteron', type: 'Aire officielle',
     coords: [44.8998, 6.6353], gps: '44.89980, 6.63530',
     places: '~25', price: '≈ 10-13 €/nuit', noise: 2, view: 4, sun4g: 4, pente: 5, ombre: 2, sunrise: 3, sunset: 3, crowd: 2,
     services: { eau: true, vidange: true, elec: true },

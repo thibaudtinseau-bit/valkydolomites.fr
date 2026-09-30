@@ -20,7 +20,8 @@ export default function Today() {
   const { plan, dayCheck, setDayCheck, todayOverride, setTodayOverride, done } = useStore()
   const todayISO = new Date().toISOString().slice(0, 10)
   const autoIdx = plan.findIndex((d) => d.date === todayISO)
-  const idx = todayOverride != null ? todayOverride : (autoIdx >= 0 ? autoIdx : 0)
+  // Borné : un jour mémorisé peut ne plus exister après un raccourcissement du planning.
+  const idx = Math.min(plan.length - 1, Math.max(0, todayOverride != null ? todayOverride : (autoIdx >= 0 ? autoIdx : 0)))
   const day = plan[idx]
   const beforeTrip = autoIdx < 0 && todayISO < TRIP_START
 

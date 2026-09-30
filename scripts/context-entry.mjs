@@ -9,7 +9,7 @@ import { WEBCAMS } from '../src/data/webcams.js'
 const ctx = {
   voyage: {
     depart: 'Montarnaud (Hérault, France), jeudi 17 septembre 2026 en début d’après-midi',
-    retour: 'Montarnaud, vendredi 2 octobre 2026 en soirée',
+    retour: 'Montarnaud, jeudi 1er octobre 2026 en début de soirée (un jour plus tôt que prévu)',
     vehicule: 'Camping-car (< 8 m), 3 jours d’autonomie eau/batterie, chien à bord (Valky)',
     contraintes: 'Étapes routières ≤ 3-4 h avec balade chien quotidienne. Éviter les secteurs à patous. Grandes randonnées privilégiées. Flexibles selon météo.',
   },

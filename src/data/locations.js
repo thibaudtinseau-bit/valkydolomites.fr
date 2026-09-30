@@ -1211,6 +1211,104 @@ export const LOCATIONS = [
     refuge: '—',
     resto: 'Bars et restaurants à Garda et à Punta San Vigilio',
   },
+  // ─────────────────────────── AJOUT DU 30/09 — RETOUR PAR LA DURANCE ───────────────────────────
+  {
+    id: 'ganagobie',
+    name: 'Prieuré et forêt de Ganagobie',
+    area: '',
+    coords: [44.0033, 5.9186],
+    rating: 3, status: 'new', avoidDog: false,
+    tagline: 'Un prieuré clunisien du Xe siècle perché sur un plateau boisé au-dessus de la Durance.',
+    description:
+      "Au-dessus de Peyruis, le plateau de Ganagobie porte un prieuré clunisien fondé au Xe siècle, toujours habité par des moines bénédictins. La boucle officielle part du village, monte en forêt de pins et de chênes verts jusqu’au plateau, passe près du prieuré et d’un belvédère sur la vallée de la Durance, puis longe le bord du plateau par une ancienne carrière de meules et les ruines de l’oppidum de Villevieille.",
+    why: [
+      'Pile sur la route du retour, à 5 min de l’A51.',
+      'En forêt presque tout du long : la meilleure option s’il bruine.',
+      'Prieuré roman, belvédère sur la Durance et les Préalpes, vestiges de l’oppidum.',
+    ],
+    whyNot: [
+      'Boucle courte : 2 h de marche.',
+      'Bord de plateau avec risque de chute par endroits.',
+      'Église et abords du cloître à visiter en silence, et sans le chien.',
+    ],
+    hike: { distanceKm: 5.9, dplusM: 268, timeH: '2h', altMaxM: 705, difficulty: 'Facile', start: 'Parking de la mairie de Ganagobie' },
+    links: {
+      gpx: 'https://www.rando-alpes-haute-provence.fr/trek/233458-Prieure-et-foret-de-Ganagobie',
+      gmaps: 'https://www.google.com/maps/search/?api=1&query=Prieur%C3%A9+de+Ganagobie',
+    },
+    practical: {
+      parkingPrice: 'Parking de la mairie de Ganagobie (taille non vérifiée pour un grand camping-car)',
+      cablecarPrice: 'Aucune remontée',
+      hours: 'Libre. Respecter le calme des moines près de la clôture.',
+      suggestedTime: '2 h la boucle, 2h30-3 h avec le prieuré et les belvédères',
+    },
+    dog: {
+      stars: 4,
+      traits: { laisse: true, museliere: false, etroits: false, cables: false, vide: true, pierriers: false, foret: true, prairie: false, eau: false, ombre: true, demiTour: true },
+      notes: 'Forêt ombragée et chemins faciles. Laisse au bord du plateau et pendant la saison de chasse. Pas de point d’eau sûr : gourde.',
+    },
+    patou: { level: 0, reason: 'Forêt de pins et de chênes verts sur un plateau, sans alpage : aucun troupeau signalé.' },
+    camper: {
+      maxHeight: 'Aucune limite connue',
+      maxLength: 'Route du village étroite par endroits : à vérifier sur place',
+      parking: 'Parking de la mairie de Ganagobie',
+      overnight: 'Non prévue — retour à la maison dans la foulée',
+      aire: 'Sisteron (Camping-Car Park) ou parking des Pénitents aux Mées',
+      services: { vidange: 'Aire de Sisteron', eau: 'Aire de Sisteron', elec: 'Aire de Sisteron' },
+      notes: 'Accès par Peyruis, sortie de l’A51. Maison à ~3 h par Aix, Arles et Nîmes.',
+    },
+    sunset: 5, sunrise: 4, crowd: 2,
+    refuge: '—',
+    resto: 'Boutique des moines au prieuré',
+  },
+  {
+    id: 'penitents-des-mees',
+    name: 'Les Pénitents des Mées',
+    area: '',
+    coords: [44.0325, 5.9800],
+    rating: 4, status: 'new', avoidDog: false,
+    tagline: 'Une muraille de colonnes de poudingue au-dessus du village : des moines pétrifiés, dit la légende.',
+    description:
+      "Au-dessus du village des Mées, sur la rive gauche de la Durance, des colonnes de poudingue hautes jusqu’à une centaine de mètres s’alignent comme une procession de moines encapuchonnés. Selon la légende, ce sont des moines de la montagne de Lure changés en pierre. Un sentier rénové part du village, grimpe dans le poudingue jusqu’à la crête de Piécocu, à 600 m, puis redescend par les couloirs entre les colonnes.",
+    why: [
+      'Un site géologique unique, à 20 min de Sisteron et sur la route du retour.',
+      'Boucle courte et facile, vue sur la vallée de la Durance et le plateau de Valensole.',
+      'Se combine avec Ganagobie, 15 min plus loin.',
+    ],
+    whyNot: [
+      'Quelques passages légèrement exposés et des chutes de pierres possibles.',
+      'Le poudingue mouillé glisse : à éviter sous la pluie.',
+    ],
+    hike: { distanceKm: 5, dplusM: 200, timeH: '2h – 2h30', altMaxM: 600, difficulty: 'Facile', start: 'Place de la République, Les Mées' },
+    links: {
+      gpx: 'https://www.visorando.com/en/walk-le-sentier-des-penitents-des-mees/',
+      gmaps: 'https://www.google.com/maps/search/?api=1&query=P%C3%A9nitents+des+M%C3%A9es',
+    },
+    practical: {
+      parkingPrice: 'Parking des Pénitents gratuit, eau et poubelles',
+      cablecarPrice: 'Aucune remontée',
+      hours: 'Libre',
+      suggestedTime: '2h-2h30',
+    },
+    dog: {
+      stars: 3,
+      traits: { laisse: true, museliere: false, etroits: true, cables: false, vide: true, pierriers: false, foret: false, prairie: false, eau: false, ombre: false, demiTour: true },
+      notes: 'Quelques passages légèrement exposés : laisse courte et rester sur le sentier. Rien pour boire en route : gourde. À sauter s’il pleut.',
+    },
+    patou: { level: 0, reason: 'Falaises de poudingue et garrigue au-dessus d’un village : aucun troupeau signalé.' },
+    camper: {
+      maxHeight: 'Aucune limite',
+      maxLength: 'OK — grand parking au pied des Pénitents',
+      parking: 'Parking des Pénitents, ou parking du stade avenue des Pénitents (plat et calme)',
+      overnight: 'Nuit tolérée au parking des Pénitents, parfois bruyant',
+      aire: 'Sisteron (Camping-Car Park), 20 min',
+      services: { vidange: 'Aire de Sisteron', eau: 'Robinet au parking des Pénitents', elec: 'Aire de Sisteron' },
+      notes: 'Ganagobie à 15 min de l’autre côté de la Durance, par Peyruis.',
+    },
+    sunset: 6, sunrise: 5, crowd: 2,
+    refuge: '—',
+    resto: 'Cafés du village des Mées',
+  },
 ]
 
 export const byId = Object.fromEntries(LOCATIONS.map((l) => [l.id, l]))

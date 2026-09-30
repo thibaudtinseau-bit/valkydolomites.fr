@@ -31,7 +31,7 @@ export default function Planning() {
 
   return (
     <div className="page fade-in">
-      <div className="eyebrow">17 septembre → 2 octobre 2026</div>
+      <div className="eyebrow">17 septembre → 1er octobre 2026</div>
       <div className="section-head" style={{ marginBottom: 6 }}>
         <h2>Planning — Montarnaud → Dolomites → Montarnaud</h2>
         <div style={{ display: 'flex', gap: 8 }}>
